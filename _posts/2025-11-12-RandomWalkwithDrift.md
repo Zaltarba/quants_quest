@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "From Drift to Martingale: can a Random Walk with Drift be One ?"
+title: "From Drift to Martingale: Can a Random Walk with Drift be One ?"
 categories: [Statistics, Quantitative Finance, ]
 excerpt: "Learn how the risk-neutral measure mathematically transforms a random walk with drift into a martingale by removing its drift, with clear step-by-step explanations."
 image: /thumbnails/RandomWalkwithDrift.jpeg
@@ -233,6 +233,7 @@ If you’d like to explore these ideas more deeply, the following resources prov
    A mathematically precise introduction to the link between real-world and risk-neutral measures.
 
 Together, these texts bridge intuition and mathematics, reinforcing how **changing measures** connects probability theory, pricing, and the economics of risk.
+
 
 
 
