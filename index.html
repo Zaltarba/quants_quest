@@ -96,13 +96,12 @@ layout: default
     }
   
     .post-image {
-      max-width: 100%;
-      aspect-ratio: 1 / 1;
-      border-radius: 12px;
-      display: flex;
+      width: 80%;          /* responsive width */
+      height: auto;        /* height = width via aspect-ratio */
+      aspect-ratio: 1 / 1; /* keep square */
+      margin: 0 auto;
       align-items: center;
       justify-content: center;
-      margin: 0 auto; /* centers the image horizontally */
     }
   
     .content {
