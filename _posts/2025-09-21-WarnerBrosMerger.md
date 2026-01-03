@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Merger Arbitrage Explained: Warner Bros Discovery, Paramount & Market-Implied Probabilities"
+title: "Merger Arbitrage Explained: Market-Implied Probabilities on Warner Bros Discovery & Paramount Deal"
 categories: [Quantitative Finance, Python]
 excerpt: "Learn how to analyze merger arbitrage opportunities using the Warner Bros Discovery and Paramount deal rumors. Break down market-implied probabilities, downside risk, and expected value like a quant."
 image: /thumbnails/WarnerBros.jpeg
@@ -397,6 +397,7 @@ But more complex models are absolutely possible:
 You don’t *need* these tools to start — but as the stakes grow, or as you allocate more capital to merger arbitrage, adding depth to your modeling can help improve risk management and return profile.
 
 What’s your take ? Is the market underestimating the regulatory risk here ? Or is this a misunderstood opportunity ? Let's talk bellow !
+
 
 
 
