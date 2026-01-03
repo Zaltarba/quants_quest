@@ -92,16 +92,21 @@ layout: default
       flex-direction: column;
       padding: 18px;
       gap: 16px;
+      align-items: center; /* center children horizontally */
     }
   
     .post-image {
       max-width: 100%;
       aspect-ratio: 1 / 1;
       border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto; /* centers the image horizontally */
     }
   
     .content {
-      text-align: left;
+      text-align: center; /* center description and read more */
     }
   
     h1 {
@@ -122,8 +127,7 @@ layout: default
     .read-more {
       font-size: 0.85rem;
     }
-  }
-  
+  }  
   /* Pagination */
   .pagination a,
   .pagination span {
