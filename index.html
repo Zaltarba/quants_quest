@@ -70,9 +70,9 @@ layout: default
   
   /* RIGHT SIDE (IMAGE) */
   .post-image {
-    flex: 1;
-    max-width: 240px; /* ⬅️ increased from 180px (~33%) */
-    aspect-ratio: 1 / 1;
+    flex: 0 0 240px;      /* fixed width for desktop */
+    width: 240px;
+    height: 240px;         /* ⬅️ force square */
     display: flex;
     align-items: center;
     justify-content: center;
