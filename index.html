@@ -8,9 +8,16 @@ layout: default
       font-size: 16px;
   }
   .post {
-      display: flex;
-      flex-direction: row;
-      margin-bottom: 30px;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 35px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .post:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.09);
   }
   .post-image {
       flex: 1; /* Smaller part of the golden ratio */
