@@ -36,37 +36,37 @@ layout: default
       {{ content | markdownify }}
     {% endcapture %}
   
-    {% comment %}
-      Insert newsletter after the first closing </p> in the intro.
-      This preserves $$ ... $$ math.
-    {% endcomment %}
-  
     {% assign newsletter_inserted = false %}
   
-    {% if rendered_content contains "</p>" %}
-      {% assign parts = rendered_content | split: "</p>" %}
-      {% for part in parts %}
-        {% if forloop.first %}
-          {{ part }}</p>
+    {% comment %}
+      Split rendered HTML by <h2> to detect headings.
+      The <h2> tags come from ## after markdownify, so we preserve $$ ... $$ math.
+    {% endcomment %}
+  
+    {% assign parts = rendered_content | split: "<h2>" %}
+    {% for part in parts %}
+      {% if forloop.first %}
+        {{ part }}
+      {% else %}
+        <h2>{{ part | split: "</h2>" | first }}</h2>
+        {{ part | remove_first: part | split: "</h2>" | last }}
+  
+        {% if forloop.index == 2 and newsletter_inserted == false %}
           <div class="newsletter-container">
             {% include newsletter_form.html %}
           </div>
           {% assign newsletter_inserted = true %}
-        {% else %}
-          {{ part }}</p>
         {% endif %}
-      {% endfor %}
-    {% else %}
-      {{ rendered_content }}
-      {% if newsletter_inserted == false %}
-        <div class="newsletter-container">
-          {% include newsletter_form.html %}
-        </div>
       {% endif %}
+    {% endfor %}
+  
+    {% if newsletter_inserted == false %}
+      <div class="newsletter-container">
+        {% include newsletter_form.html %}
+      </div>
     {% endif %}
   </div>
 
-  
 </article>
 
 <div id="comments">
