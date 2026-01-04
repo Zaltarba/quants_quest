@@ -55,7 +55,7 @@ plt.title("Random Walk Simulations")
 plt.show()
 ```
 
-<img src="/quants_quest/images/RWvsM_fig_1.png" alt="Python simulation of random walk in finance">
+<img src="quants.quest/images/RWvsM_fig_1.png" alt="Python simulation of random walk in finance">
 
 ## What is a Random Walk in Stock Prices?  {#Martingale}
 
@@ -194,7 +194,7 @@ plt.legend()
 plt.show()
 ```
 
-<img src="/quants_quest/images/RWvsM_fig_2.png" alt="Martingale simulation example with Python">
+<img src="quants.quest/images/RWvsM_fig_2.png" alt="Martingale simulation example with Python">
 
 ## Conclusion  {#Conclusion}
 
@@ -222,6 +222,7 @@ To deepen your understanding of martingales, stochastic discount factors, and th
   - [Radon–Nikodym theorem](https://en.wikipedia.org/wiki/Radon%E2%80%93Nikodym_theorem)
 
 These readings offer both the theoretical foundation and practical insights needed for modern quantitative finance.
+
 
 
 
