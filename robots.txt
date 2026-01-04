@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zaltarba.github.io/blog/sitemap.xml
+Sitemap: https://quants.quest/sitemap.xml
