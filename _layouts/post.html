@@ -30,29 +30,10 @@ layout: default
   <!--<div class="date">
     Written on {{ page.date | date: "%B %e, %Y" }}
   </div>-->
-
-<div class="entry">
-  {% assign lines = content | split: "\n" %}
-  {% assign heading_count = 0 %}
-  {% assign newsletter_inserted = false %}
-  {% assign final_lines = "" | split: "" %} 
-
-  {% for line in lines %}
-    {% assign trimmed = line | strip %}
-
-    {% if trimmed contains "## " %}
-      {% assign heading_count = heading_count | plus: 1 %}
-    {% endif %}
-
-    {% assign final_lines = final_lines | push: line %}
-
-    {% if heading_count == 2 and newsletter_inserted == false %}
-      {% assign final_lines = final_lines | push: '<div class="newsletter-container">{% include newsletter_form.html %}</div>' %}
-      {% assign newsletter_inserted = true %}
-    {% endif %}
-  {% endfor %}
-  {{ final_lines | join: "\n" | markdownify }}
-</div>
+  
+  <div class="entry">
+    {{ content }}
+  </div>
   
 </article>
 
