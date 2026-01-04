@@ -32,7 +32,7 @@ layout: default
   </div>-->
 
   <div class="entry">
-    {% assign sections = content | split: "## " %}
+    {% assign sections = page.content | split: "## " %}
     {% assign intro = sections[0] %}
     {% assign rest = sections | slice: 1, sections.size %}
     
