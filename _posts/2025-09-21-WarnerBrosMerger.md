@@ -182,7 +182,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-<img src="/quants_quest/images/WarnerBros_fig_1.png" alt="Warner Bros Stock Evolution">
+<img src="quants.quest/images/WarnerBros_fig_1.png" alt="Warner Bros Stock Evolution">
 
 Analyst reactions have been mixed: analysts from TD Cowen have downgraded WBD from Buy to Hold, arguing that without a deal, the stock could fall back to **11\\$–12\\$**, based on fundamentals. ([MarketWatch, Sep 20, 2025](https://www.marketwatch.com/story/buying-wbds-stock-ahead-of-a-possible-paramount-deal-this-analyst-is-cautious-0b4fa36c))
 
@@ -265,7 +265,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-<img src="/quants_quest/images/WarnerBros_fig_2.png" alt="Market-Implied Probability of WBD Acquisition">
+<img src="quants.quest/images/WarnerBros_fig_2.png" alt="Market-Implied Probability of WBD Acquisition">
 
 Let’s break down the potential payoff structure:
 
@@ -340,7 +340,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-<img src="/quants_quest/images/WarnerBros_fig_3.png" alt="Implied Probability Sensitivity — WBD Deal at 24">
+<img src="quants.quest/images/WarnerBros_fig_3.png" alt="Implied Probability Sensitivity — WBD Deal at 24">
 
 ### What Makes This Deal Tricky?
 
@@ -397,6 +397,7 @@ But more complex models are absolutely possible:
 You don’t *need* these tools to start — but as the stakes grow, or as you allocate more capital to merger arbitrage, adding depth to your modeling can help improve risk management and return profile.
 
 What’s your take ? Is the market underestimating the regulatory risk here ? Or is this a misunderstood opportunity ? Let's talk bellow !
+
 
 
 
