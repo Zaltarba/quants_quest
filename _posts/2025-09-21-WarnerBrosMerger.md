@@ -47,6 +47,10 @@ Merger arbitrage isn’t about guessing whether a stock will go up or down. It�
 
 It’s not glamorous. It’s not momentum-driven. But when done systematically with proper sizing, scenario modeling, and discipline it can be a effective strategy (here a [first article](https://www.aima.org/asset/676DA5D6-8CE4-42D7-A2C6171EAC6382DC/) and a [second one](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=315639) documenting this assertion).
 
+<div class="newsletter-container">
+  {% include newsletter_form.html %}
+</div>
+
 ## Market Prices and Implied Probabilities  {#understanding-implied-probability-from-market-prices}
 
 When a public company announces it’s being acquired, the offer is almost always above the last trading price, often significantly. That premium is what makes merger arbitrage possible.
@@ -182,7 +186,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-<img src="quants.quest/images/WarnerBros_fig_1.png" alt="Warner Bros Stock Evolution">
+<img src="/images/WarnerBros_fig_1.png" alt="Warner Bros Stock Evolution">
 
 Analyst reactions have been mixed: analysts from TD Cowen have downgraded WBD from Buy to Hold, arguing that without a deal, the stock could fall back to **11\\$–12\\$**, based on fundamentals. ([MarketWatch, Sep 20, 2025](https://www.marketwatch.com/story/buying-wbds-stock-ahead-of-a-possible-paramount-deal-this-analyst-is-cautious-0b4fa36c))
 
@@ -265,7 +269,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-<img src="quants.quest/images/WarnerBros_fig_2.png" alt="Market-Implied Probability of WBD Acquisition">
+<img src="/images/WarnerBros_fig_2.png" alt="Market-Implied Probability of WBD Acquisition">
 
 Let’s break down the potential payoff structure:
 
@@ -340,7 +344,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-<img src="quants.quest/images/WarnerBros_fig_3.png" alt="Implied Probability Sensitivity — WBD Deal at 24">
+<img src="/images/WarnerBros_fig_3.png" alt="Implied Probability Sensitivity — WBD Deal at 24">
 
 ### What Makes This Deal Tricky?
 
@@ -397,6 +401,7 @@ But more complex models are absolutely possible:
 You don’t *need* these tools to start — but as the stakes grow, or as you allocate more capital to merger arbitrage, adding depth to your modeling can help improve risk management and return profile.
 
 What’s your take ? Is the market underestimating the regulatory risk here ? Or is this a misunderstood opportunity ? Let's talk bellow !
+
 
 
 
