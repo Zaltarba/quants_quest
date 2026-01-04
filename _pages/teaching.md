@@ -1,49 +1,149 @@
+--- 
+layout: page 
+title: Teaching 
+permalink: /teaching/ 
 ---
-layout: page
-title: Teaching 🏫
-permalink: /teaching/
----
 
-# Dauphine PSL - Master 222 
+<style>
+.teaching-container {
+    max-width: 900px;
+    margin: auto;
+}
 
-This [GitHub Repository](https://github.com/Zaltarba/PSL_python_for_finance/tree/main) contains all the materials for the course Introduction to Python 2025 at Université Paris Dauphine. The group project instructions are also at this page.
+.course-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
 
-### Session 1 
+.course-title h1 {
+    margin-bottom: 10px;
+}
 
-Notebook google colab [TP link](https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_1.ipynb) and [TP correction  link](https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_1_corrected.ipynb).
+.course-intro {
+    text-align: center;
+    font-size: 1.05em;
+    color: #444;
+}
 
-### Session 2 
+.session-card {
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background: #fafafa;
+}
 
-Notebook google colab [TP link](https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_2.ipynb) and [TP correction  link](https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_2_corrected.ipynb).
+.session-card h3 {
+    margin-top: 0;
+    color: #2c3e50;
+}
 
-### Session 3 
+.session-links a {
+    display: inline-block;
+    margin-right: 15px;
+    color: #3498db;
+    font-weight: 500;
+    text-decoration: none;
+}
 
-Notebook google colab [TP link](https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_3.ipynb) and [TP correction  link](https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_3_corrected.ipynb).
+.session-links a:hover {
+    text-decoration: underline;
+}
 
-[Pandas Cheat Sheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)
+.assessment-box {
+    border-left: 5px solid #3498db;
+    background: #f4f8fc;
+    padding: 20px;
+    border-radius: 6px;
+    margin-top: 30px;
+}
 
-### Session 4 
+.resources {
+    margin-top: 30px;
+}
 
-Notebook google colab [TP link](https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_4.ipynb) and [TP correction  link](https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_4_corrected.ipynb).
+.resources a {
+    color: #3498db;
+    font-weight: 500;
+    text-decoration: none;
+}
+</style>
 
-### Session 5
+<div class="teaching-container">
 
-Notebook google colab [TP link](https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_5.ipynb) and [TP correction  link](https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_5_corrected.ipynb).
+<div class="course-title">
+    <h1>Dauphine PSL – Master 222</h1>
+    <p class="course-intro">
+        Introduction to Python (2025) — Université Paris Dauphine
+    </p>
+</div>
 
-### Session 6
+<p class="course-intro">
+    All course materials and project instructions are available on this
+    <a href="https://github.com/Zaltarba/PSL_python_for_finance/tree/main">GitHub repository</a>.
+</p>
 
-Notebook google colab [TP link](https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_6.ipynb).
+<div class="session-card">
+    <h3>📘 Session 1</h3>
+    <div class="session-links">
+        <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_1.ipynb">TP</a>
+        <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_1_corrected.ipynb">Correction</a>
+    </div>
+</div>
 
-### Assements dates 
+<div class="session-card">
+    <h3>📘 Session 2</h3>
+    <div class="session-links">
+        <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_2.ipynb">TP</a>
+        <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_2_corrected.ipynb">Correction</a>
+    </div>
+</div>
 
-**Paper Exam**  
-Scheduled for 6 November 2025, the exam will assess your understanding of the course’s theoretical foundations.  
-*50% of your final grade*
+<div class="session-card">
+    <h3>📘 Session 3</h3>
+    <div class="session-links">
+        <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_3.ipynb">TP</a>
+        <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_3_corrected.ipynb">Correction</a>
+    </div>
+</div>
 
-**Group Project**  
-Due on 9 January 2025 with an oral presentation, the project description is at this [GitHub Repository](https://github.com/Zaltarba/PSL_python_for_finance/tree/main).  
-*50% of your final grade*
+<div class="session-card">
+    <h3>📘 Session 4</h3>
+    <div class="session-links">
+        <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_4.ipynb">TP</a>
+        <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_4_corrected.ipynb">Correction</a>
+    </div>
+</div>
 
-### Ressources 
+<div class="session-card">
+    <h3>📘 Session 5</h3>
+    <div class="session-links">
+        <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_5.ipynb">TP</a>
+        <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_5_corrected.ipynb">Correction</a>
+    </div>
+</div>
 
-[Pandas Cheat Sheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)
+<div class="session-card">
+    <h3>📘 Session 6</h3>
+    <div class="session-links">
+        <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_6.ipynb">TP</a>
+    </div>
+</div>
+
+<div class="assessment-box">
+    <h3>📝 Assessments</h3>
+
+    <p><strong>Paper Exam</strong><br>
+    6 November 2025 — 50% of final grade</p>
+
+    <p><strong>Group Project</strong><br>
+    Due 9 January 2025 (oral presentation)<br>
+    50% of final grade</p>
+</div>
+
+<div class="resources">
+    <h3>📚 Resources</h3>
+    <a href="https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf">Pandas Cheat Sheet</a>
+</div>
+
+</div>
