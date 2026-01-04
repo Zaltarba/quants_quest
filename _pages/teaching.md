@@ -79,7 +79,7 @@ permalink: /teaching/
 <div class="course-title">
     <h1>Dauphine PSL – Master 222</h1>
     <p class="course-intro">
-        Introduction to Python (2025) — Université Paris Dauphine
+        Introduction to Python (2025) 
     </p>
 </div>
 
