@@ -63,24 +63,30 @@
             margin-bottom: 20px;
         }
         
-    .header-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap; /* allows wrapping on small screens */
-        padding: 10px 20px;
-    }
+.header-inner {
+    display: flex;
+    flex-direction: column; /* stack items vertically */
+    align-items: center;    /* center everything */
+    text-align: center;
+    padding: 20px;
+}
     
     .header-logo img {
-        max-width: 80px; /* adjust logo size */
+        max-width: 120px; /* adjust logo size */
         height: auto;
+        margin-bottom: 10px;
     }
     
-    .header-center {
-        flex: 1; /* take remaining space */
-        text-align: center;
+    .header-center h1 {
+        margin: 0;
+        font-size: 2em;
     }
     
+    .header-center p {
+        margin: 5px 0 15px;
+        font-size: 1em;
+        color: #555;
+    }
     .header-nav {
         display: flex;
         flex-wrap: wrap;
