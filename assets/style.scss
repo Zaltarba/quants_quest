@@ -1224,3 +1224,31 @@ body:after {
 //@import "highlights";
 @import "darcula";
 @import "svg-icons";
+
+/* Comments container styling */
+#comments {
+  margin-top: 50px;          /* space from content above */
+  padding: 20px;             /* inner spacing */
+  max-width: 800px;          /* limit width for readability */
+  width: 100%;               /* responsive */
+  background-color: #ffffff; /* optional: slightly different background */
+  border-radius: 8px;        /* rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* subtle shadow */
+  overflow: hidden;          /* contain iframe inside rounded corners */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Make iframe inside Utterances fully responsive */
+#comments iframe {
+  width: 100% !important;   /* always full width */
+  min-height: 300px;        /* minimum height so it doesn't collapse */
+  border: none;             /* remove default border */
+}
+
+/* Optional: responsive tweaks */
+@media (max-width: 768px) {
+  #comments {
+    padding: 15px;
+    margin-top: 30px;
+  }
+}
