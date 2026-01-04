@@ -31,38 +31,43 @@ layout: default
     Written on {{ page.date | date: "%B %e, %Y" }}
   </div>-->
 
-  <div class="entry">
-    {% assign sections = page.content | split: "## " %}
-    {% assign intro = sections[0] %}
-    {% assign rest = sections | slice: 1, sections.size %}
-    
-    {% assign intro_lines = intro | split: "\n\n" %}
-    
-    {% assign newsletter_inserted = false %}
-    {% for line in intro_lines %}
-      {{ line | markdownify }}
-      
-      {% if forloop.index == 2 and newsletter_inserted == false %}
-        <div class="newsletter-container">
-          {% include newsletter_form.html %}
-        </div>
-        {% assign newsletter_inserted = true %}
-      {% endif %}
-    {% endfor %}
-    
-    {% for section in rest %}
-      {% assign lines = section | split: "\n" %}
-      <h2>{{ lines[0] }}</h2>
-      {{ section | remove_first: lines[0] | markdownify }}
-    {% endfor %}
-    
-    <!-- If newsletter not inserted, put at end of post -->
-    {% if newsletter_inserted == false %}
+<div class="entry">
+  {% assign sections = page.content | split: "## " %}
+  {% assign intro = sections[0] %}
+  {% assign rest = sections | slice: 1, sections.size %}
+
+  {% comment %}
+    Split intro into paragraphs for newsletter insertion,
+    but don't split lines inside $$ ... $$ math blocks
+  {% endcomment %}
+  {% assign paragraphs = intro | split: "\n\n" %}
+  {% assign newsletter_inserted = false %}
+
+  {% for para in paragraphs %}
+    {{ para | strip | markdownify }}
+
+    {% if forloop.index == 2 and newsletter_inserted == false %}
       <div class="newsletter-container">
         {% include newsletter_form.html %}
       </div>
+      {% assign newsletter_inserted = true %}
     {% endif %}
-  </div>
+  {% endfor %}
+
+  {% comment %} Render remaining sections with headings {% endcomment %}
+  {% for section in rest %}
+    {% assign lines = section | split: "\n" %}
+    <h2>{{ lines[0] }}</h2>
+    {{ section | remove_first: lines[0] | markdownify }}
+  {% endfor %}
+
+  {% comment %} If newsletter was not inserted, put at the end {% endcomment %}
+  {% if newsletter_inserted == false %}
+    <div class="newsletter-container">
+      {% include newsletter_form.html %}
+    </div>
+  {% endif %}
+</div>
   
 </article>
 
