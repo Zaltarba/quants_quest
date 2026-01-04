@@ -1,27 +1,15 @@
-<section class="newsletter-card" aria-label="Subscribe to newsletter">
-  <h2 class="newsletter-title">Subscribe for Updates and Exclusive Comments</h2>
-  <p class="newsletter-description">
-    Receive every new post directly in your inbox, along with unpublished comments available only to subscribers.
-  </p>
+<div class="newsletter-card">
+  <h2>Subscribe</h2>
+  <p>You'll receive every new post with extra unpublished comments available only to subscribers!</p>
   <form
     action="https://buttondown.com/api/emails/embed-subscribe/TheQuantQuest"
     method="post"
     target="popupwindow"
     onsubmit="window.open('https://buttondown.com/TheQuantQuest', 'popupwindow')"
     class="newsletter-form"
-    aria-label="Newsletter subscription form"
   >
-    <label for="newsletter-email" class="visually-hidden">Email address</label>
-    <input
-      type="email"
-      name="email"
-      id="newsletter-email"
-      placeholder="Enter your email"
-      required
-    />
-    <button type="submit">Subscribe</button>
+    <input type="email" name="email" placeholder="Email address" required />
+    <input type="submit" value="Subscribe" />
   </form>
-  <p class="newsletter-footer">
-    We respect your privacy. Unsubscribe anytime.
-  </p>
-</section>
+  <p class="newsletter-footer">I won't send you spam. Unsubscribe at any time.</p>
+</div>
