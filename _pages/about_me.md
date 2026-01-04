@@ -75,12 +75,3 @@ Production of descriptive statistics on French communes for the AFL barometer, i
 
 - **Movie recommendation algorithm with Python** - *2020*  
 Prediction of MovieLens database users' tastes by methods including clustering (k-means), PCA, matrix factorization using numpy, pandas, scipy libraries
-
-# Skills & interests 
-
--**Languages** : French (native) 🇫🇷, English (TOEIC: 910), German (level B1)  
--**Programming languages** : Python, SQL, VBA, DAX, LaTeX  
--**Softwares** : VS Code, Excel, Power BI, Microsoft Access, Powerpoint   
--**Soft skills** : Teamwork, Critical thinking, Curiosity, Autonomy   
--**Sports** : Tennis 🎾, Boxing 🥊   
--**Culture and Hobbies** : Chess ♟️, Cinematography 🎬, Aquariophilia 🐟
