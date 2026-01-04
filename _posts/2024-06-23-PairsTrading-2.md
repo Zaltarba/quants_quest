@@ -8,7 +8,7 @@ hidden: True
 
 ## Introduction
 
-Just so you know, this article will be a direct follow-up to my [first article](https://zaltarba.github.io/blog/PairsTrading-1/) about pairs trading. After providing some global context, motivations, and information on pairs trading, I will go more in-depth about something I teased: the link between the beta(s) of a pair of stocks and cointegration.
+Just so you know, this article will be a direct follow-up to my [first article](https://zaltarba.github.io/quants_quest/PairsTrading-1/) about pairs trading. After providing some global context, motivations, and information on pairs trading, I will go more in-depth about something I teased: the link between the beta(s) of a pair of stocks and cointegration.
 
 ## About Multi Factor Model
 
