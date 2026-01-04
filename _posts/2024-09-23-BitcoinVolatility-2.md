@@ -23,7 +23,7 @@ hidden: false
 
 ## Introduction
 
-In our [last post](https://zaltarba.github.io/blog/BitcoinVolatility-1/), we discussed the Exponentially Weighted Moving Average (EWMA) method for estimating Bitcoin’s volatility. We used historical data from Binance and implemented the EWMA model to track volatility. To fetch the data, check out this [previous post](https://zaltarba.github.io/blog/DataBaseCreation/), where we explored how to use the Binance API. This time we’ll take it a step further by introducing the **GARCH** model, a more sophisticated method used to estimate but also forecast volatility. Let’s dive in!
+In our [last post](https://zaltarba.github.io/quants_quest/BitcoinVolatility-1/), we discussed the Exponentially Weighted Moving Average (EWMA) method for estimating Bitcoin’s volatility. We used historical data from Binance and implemented the EWMA model to track volatility. To fetch the data, check out this [previous post](https://zaltarba.github.io/quants_quest/DataBaseCreation/), where we explored how to use the Binance API. This time we’ll take it a step further by introducing the **GARCH** model, a more sophisticated method used to estimate but also forecast volatility. Let’s dive in!
 
 ## Motivations 
 
@@ -93,7 +93,7 @@ In financial time series like Bitcoin’s returns, there are well-documented **A
 
 ## Preparing the Data
 
-Before we fit a GARCH model, let’s load and clean our data, just like we did in the [previous post](https://zaltarba.github.io/blog/BitcoinVolatility-1/) with EWMA. We’ll again use the Bitcoin data we stored in HDF5 format and ensure the dataset is free of missing values. Because we are gonna use plenty of statistical test, we are gonna have to tackle some hardware limitations. For this modelling we will work with 3 months historic and keep one months for out of sample testing.
+Before we fit a GARCH model, let’s load and clean our data, just like we did in the [previous post](https://zaltarba.github.io/quants_quest/BitcoinVolatility-1/) with EWMA. We’ll again use the Bitcoin data we stored in HDF5 format and ensure the dataset is free of missing values. Because we are gonna use plenty of statistical test, we are gonna have to tackle some hardware limitations. For this modelling we will work with 3 months historic and keep one months for out of sample testing.
 
 ### Loading Data from HDF5
 
@@ -143,7 +143,7 @@ plt.ylabel('BTC USDT')
 plt.show()
 ```
 
-![Bitcoin price chart in Python](/blog/images/BitcoinVolatility-2-figure-1.png)
+![Bitcoin price chart in Python](/quants_quest/images/BitcoinVolatility-2-figure-1.png)
 
 ### Calculating Log Returns
 
@@ -169,7 +169,7 @@ plt.ylabel('Log Return')
 plt.show()
 ```
 
-![Bitcoin log price chart in Python](/blog/images/BitcoinVolatility-2-figure-2.png)
+![Bitcoin log price chart in Python](/quants_quest/images/BitcoinVolatility-2-figure-2.png)
 
 ## Testing for ARCH Effects
 
@@ -430,7 +430,7 @@ plt.ylabel('Standardized residuals')
 plt.show()
 ```
 
-![Bitcoin chart using GARCH in Python](/blog/images/BitcoinVolatility-2-figure-3.png)
+![Bitcoin chart using GARCH in Python](/quants_quest/images/BitcoinVolatility-2-figure-3.png)
 
 At first glance, the situation looks concerning: we observe clear volatility clustering, with high volatility in the initial months, and numerous extreme values, suggesting the residuals may deviate from normality. 
 
@@ -438,7 +438,7 @@ At first glance, the situation looks concerning: we observe clear volatility clu
 We now need to realize some <strong>rigorous statistical testing</strong> to confirm that.
 </div>
 
-![Bitcoin volatility chart using GARCH in Python](/blog/images/here_we_go_again.png)
+![Bitcoin volatility chart using GARCH in Python](/quants_quest/images/here_we_go_again.png)
 
 ### Autocorrelation of Residuals
 
@@ -555,7 +555,7 @@ plt.ylabel('Volatility')
 plt.show()
 ```
 
-![Bitcoin volatility chart using GARCH in Python 2](/blog/images/BitcoinVolatility-2-figure-4.png)
+![Bitcoin volatility chart using GARCH in Python 2](/quants_quest/images/BitcoinVolatility-2-figure-4.png)
 
 The plot shows how volatility fluctuates over time, capturing periods of heightened risk (volatility clustering) and more stable periods. 
 
@@ -591,7 +591,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![figure 6](/blog/images/BitcoinVolatility-2-figure-5.png)
+![figure 6](/quants_quest/images/BitcoinVolatility-2-figure-5.png)
 
    - **Observation**: The GARCH model consistently shows higher volatility estimates compared to the EWMA model.
    - **Explanation**: This is a typical feature of the GARCH model, which captures both the recent volatility and its persistence over time. Unlike EWMA, which gives more weight to recent data while smoothing out fluctuations, GARCH is designed to account for longer-term volatility clustering, making it more responsive to periods of heightened market stress.
@@ -617,7 +617,7 @@ plt.ylabel('Volatility')
 plt.show()
 ```
 
-![Bitcoin volatility chart using GARCH in Python 3](/blog/images/BitcoinVolatility-2-figure-6.png)
+![Bitcoin volatility chart using GARCH in Python 3](/quants_quest/images/BitcoinVolatility-2-figure-6.png)
 
 The plot shows how volatility is expected to behave over the next 60 minutes. Spikes in forecasted volatility would indicate heightened market risk, while a more stable line would suggest a calmer market.
 
@@ -629,7 +629,7 @@ We began by discussing the motivations for moving beyond simple models, then del
 
 We showed how the GARCH model can be used both to estimate **realized volatility** and to generate **volatility forecasts** for the next hour. This ability to project future volatility is incredibly useful for traders, risk managers, and anyone involved in high-frequency trading environments where knowing short-term risk is critical.
 
-In [the next post](https://zaltarba.github.io/blog/BitcoinVolatility-2/), we will dive deeper into volatility forecasting by exploring alternative data points like Low and High. Stay tuned for the final part of our series as we continue to explore the fascinating world of volatility modeling for Bitcoin !
+In [the next post](quants.quest/BitcoinVolatility-2/), we will dive deeper into volatility forecasting by exploring alternative data points like Low and High. Stay tuned for the final part of our series as we continue to explore the fascinating world of volatility modeling for Bitcoin !
 
 ## Additional Resources
 
