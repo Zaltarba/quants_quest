@@ -55,7 +55,7 @@ plt.title("Random Walk Simulations")
 plt.show()
 ```
 
-<img src="/blog/images/RWvsM_fig_1.png" alt="Python simulation of random walk in finance">
+<img src="/quants_quest/images/RWvsM_fig_1.png" alt="Python simulation of random walk in finance">
 
 ## What is a Random Walk in Stock Prices?  {#Martingale}
 
@@ -194,11 +194,11 @@ plt.legend()
 plt.show()
 ```
 
-<img src="/blog/images/RWvsM_fig_2.png" alt="Martingale simulation example with Python">
+<img src="/quants_quest/images/RWvsM_fig_2.png" alt="Martingale simulation example with Python">
 
 ## Conclusion  {#Conclusion}
 
-Random walks and martingales may seem similar at first glance, but the distinction is subtle and important. Random walks describe how prices move step by step, while martingales capture a broader property of **fair game** conditional expectations. Understanding both is fundamental to quantitative finance, stochastic modeling, and financial mathematics. To see a pratical use of random walk models and martingales properties to forecast volatility, check this [previous post](https://zaltarba.github.io/blog/BitcoinVolatility-2/) ! 
+Random walks and martingales may seem similar at first glance, but the distinction is subtle and important. Random walks describe how prices move step by step, while martingales capture a broader property of **fair game** conditional expectations. Understanding both is fundamental to quantitative finance, stochastic modeling, and financial mathematics. To see a pratical use of random walk models and martingales properties to forecast volatility, check this [previous post](quants.quest/BitcoinVolatility-2/) ! 
 
 ## Further Reading  {#FurtherReading}
 
@@ -222,6 +222,7 @@ To deepen your understanding of martingales, stochastic discount factors, and th
   - [Radon–Nikodym theorem](https://en.wikipedia.org/wiki/Radon%E2%80%93Nikodym_theorem)
 
 These readings offer both the theoretical foundation and practical insights needed for modern quantitative finance.
+
 
 
 
