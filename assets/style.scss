@@ -1210,7 +1210,14 @@ Modules - reusable parts of our design
   margin-top: 0.5em;
 }
 
-
+body:after {
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    #c7d2fe,
+    #e9d5ff
+  );
+}
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
