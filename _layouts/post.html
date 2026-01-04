@@ -35,29 +35,23 @@ layout: default
   {% assign lines = content | split: "\n" %}
   {% assign heading_count = 0 %}
   {% assign newsletter_inserted = false %}
-
-  {% capture final_content %}{% endcapture %}
+  {% assign final_lines = "" | split: "" %} 
 
   {% for line in lines %}
     {% assign trimmed = line | strip %}
+
     {% if trimmed contains "## " %}
       {% assign heading_count = heading_count | plus: 1 %}
     {% endif %}
 
-    {% capture final_content %}
-      {{ final_content }}
-      {{ line }}
-      {% if heading_count == 2 and newsletter_inserted == false %}
-        <div class="newsletter-container">
-          {% include newsletter_form.html %}
-        </div>
-        {% assign newsletter_inserted = true %}
-      {% endif %}
-      {{ "\n" }}
-    {% endcapture %}
-  {% endfor %}
+    {% assign final_lines = final_lines | push: line %}
 
-  {{ final_content | markdownify }}
+    {% if heading_count == 2 and newsletter_inserted == false %}
+      {% assign final_lines = final_lines | push: '<div class="newsletter-container">{% include newsletter_form.html %}</div>' %}
+      {% assign newsletter_inserted = true %}
+    {% endif %}
+  {% endfor %}
+  {{ final_lines | join: "\n" | markdownify }}
 </div>
   
 </article>
