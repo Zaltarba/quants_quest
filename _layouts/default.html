@@ -72,28 +72,29 @@
       
     <div class="wrapper-container">
       <div class="wrapper-masthead">
-        <div class="container">
-          <header class="masthead clearfix">
-            <!-- Avatar + Site Info -->
-            <div class="header-left">
-              <a href="{{ site.baseurl }}/" class="site-avatar">
+        <div class="header-container">
+          <div class="header-inner">
+            <!-- Logo left -->
+            <div class="header-logo">
+              <a href="{{ site.baseurl }}/">
                 <img src="{{ site.baseurl }}{{ site.avatar }}" alt="{{ site.title }}" />
               </a>
-              <div class="site-info">
-                <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
-                <p class="site-description">{{ site.description }}</p>
-              </div>
             </div>
-    
-            <!-- Navigation -->
+        
+            <!-- Centered title + description -->
+            <div class="header-center">
+              <h1 class="site-title"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
+              <p class="site-subtitle">{{ site.description }}</p>
+            </div>
+        
+            <!-- Navigation right -->
             <nav class="header-nav">
               <a href="{{ site.baseurl }}/">Posts</a>
               <a href="{{ site.baseurl }}/teaching">Teaching</a>
               <a href="{{ site.baseurl }}/search">Search</a>
               <a href="{{ site.baseurl }}/about_me">About me</a>
             </nav>
-    
-          </header>
+            </header>
         </div>
       </div>
       
