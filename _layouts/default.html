@@ -62,67 +62,79 @@
             margin-top: 0;
             margin-bottom: 20px;
         }
-        
-.header-inner {
-    display: flex;
-    flex-direction: column; /* stack items vertically */
-    align-items: center;    /* center everything */
-    text-align: center;
-    padding: 20px;
-}
-    
-    .header-logo img {
-        max-width: 120px; /* adjust logo size */
-        height: auto;
-        margin-bottom: 10px;
-    }
-    
-    .header-center h1 {
-        margin: 0;
-        font-size: 2em;
-    }
-    
-    .header-center p {
-        margin: 5px 0 15px;
-        font-size: 1em;
-        color: #555;
-    }
-    .header-nav {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center; /* center links */
-        gap: 15px;
-    }
-    
-    .header-nav a {
-        text-decoration: none;
-        color: #333;
-        font-weight: 500;
-        padding: 5px 10px;
-        transition: color 0.3s;
-    }
-    
-    .header-nav a:hover {
-        color: #007bff;
-    }
-    
-    @media (max-width: 768px) {
+
+        /* Top row: logo + title */
         .header-inner {
-            flex-direction: column;
+            display: flex;
+            flex-direction: column; /* stack nav below */
+            align-items: center;    /* center everything vertically */
             text-align: center;
+            padding: 20px;
         }
-    
+        
+        /* Row containing logo and title */
+        .header-top {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px; /* optional, keeps content centered */
+            justify-content: flex-start; /* logo left, title next to it */
+            gap: 20px;
+        }
+        
         .header-logo img {
-            max-width: 60px;
-            margin-bottom: 10px;
+            max-width: 120px; /* adjust logo size */
+            height: auto;
         }
-    
+        
+        .header-center {
+            flex: 1; /* take remaining space */
+        }
+        
+        .header-center h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        
+        .header-center p {
+            margin: 5px 0 0;
+            font-size: 1em;
+            color: #555;
+        }
+        
+        /* Navigation below */
         .header-nav {
-            justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* center links below */
+            gap: 15px;
+            margin-top: 15px;
         }
-    }
+        
+        .header-nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 5px 10px;
+            transition: color 0.3s;
+        }
+        
+        .header-nav a:hover {
+            color: #007bff;
+        }
+        
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                align-items: center;
+            }
+        
+            .header-logo img {
+                max-width: 80px;
+                margin-bottom: 10px;
+            }
+        }
     </style>
   </head>  <body>
 
@@ -133,28 +145,28 @@
       
     <div class="wrapper-container">
       <div class="wrapper-masthead">
-
         <div class="header-container">
-            <div class="header-inner">
-                <!-- Logo -->
+        <div class="header-inner">
+            <!-- Top row: logo left, title centered -->
+            <div class="header-top">
                 <div class="header-logo">
                     <a href="{{ site.baseurl }}/">
                         <img src="{{ site.baseurl }}{{ site.avatar }}" alt="{{ site.title }}" />
                     </a>
                 </div>
-        
-                <!-- Title + description -->
+    
                 <div class="header-center">
                     <h1 class="site-title"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
                     <p class="site-subtitle">{{ site.description }}</p>
                 </div>
-        
-                <!-- Navigation below -->
-                <nav class="header-nav">
-                    <a href="{{ site.baseurl }}/">Posts</a>
-                    <a href="{{ site.baseurl }}/teaching">Teaching</a>
-                    <a href="{{ site.baseurl }}/search">Search</a>
-                    <a href="{{ site.baseurl }}/about_me">About me</a>
+            </div>
+    
+            <!-- Navigation below -->
+            <nav class="header-nav">
+                <a href="{{ site.baseurl }}/">Posts</a>
+                <a href="{{ site.baseurl }}/teaching">Teaching</a>
+                <a href="{{ site.baseurl }}/search">Search</a>
+                <a href="{{ site.baseurl }}/about_me">About me</a>
             </nav>
         </div>
       </div>
