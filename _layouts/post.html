@@ -35,6 +35,38 @@ layout: default
     Written on {{ page.date | date: "%B %e, %Y" }}
   </div>-->
 
+  <div class="entry">
+    {% assign sections = content | split: "## " %}
+    {% assign heading_count = 0 %}
+    {% assign newsletter_inserted = false %}
+  
+    {% for section in sections %}
+      {% if forloop.first %}
+        <!-- The first chunk before any ##, usually intro text -->
+        {{ section | markdownify }}
+      {% else %}
+        {% assign heading_count = heading_count | plus: 1 %}
+        {% assign lines = section | split: "\n" %}
+        <h2>{{ lines[0] }}</h2>
+        {{ section | remove_first: lines[0] | markdownify }}
+  
+        {% if heading_count == 2 and newsletter_inserted == false %}
+          <div class="newsletter-container">
+            {% include newsletter_form.html %}
+          </div>
+          {% assign newsletter_inserted = true %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  
+    <!-- If newsletter not inserted anywhere (less than 2 ##), put at the end -->
+    {% if newsletter_inserted == false %}
+      <div class="newsletter-container">
+        {% include newsletter_form.html %}
+      </div>
+    {% endif %}
+  </div>
+  
 </article>
 
 <div class="newsletter-container">
