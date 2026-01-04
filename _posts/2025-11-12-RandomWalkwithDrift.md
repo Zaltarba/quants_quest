@@ -33,9 +33,9 @@ Let's make some definitions here to ensure we all speak the same language (thank
 
 A **martingale** $W_t$ with respect to a filtration $\mathcal{F}_t$ satisfies :  
 
-$$
+\[
 \mathbb{E}\left[W_{t+1} \mid \mathcal{F}_t \right] = w_t \quad \forall t \ge 0
-$$
+\]
 
 Intuitively, the best forecast of tomorrow’s value, given all information today, is simply today’s value.
 
@@ -233,6 +233,7 @@ If you’d like to explore these ideas more deeply, the following resources prov
    A mathematically precise introduction to the link between real-world and risk-neutral measures.
 
 Together, these texts bridge intuition and mathematics, reinforcing how **changing measures** connects probability theory, pricing, and the economics of risk.
+
 
 
 
