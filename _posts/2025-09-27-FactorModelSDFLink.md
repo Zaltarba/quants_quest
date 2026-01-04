@@ -150,7 +150,7 @@ In theory, if we knew the distribution of $m_{t+1}$, pricing would be straightfo
 
 <div style="text-align: center;">
   <img 
-    src="/quants_quest/images/thats_my_quant.jpeg" 
+    src="quants.quest/images/thats_my_quant.jpeg" 
     alt="That's my Quant"
     style="max-height: 350px; width: auto; max-width: 100%;">
 </div>
@@ -271,6 +271,7 @@ At first glance, factor models may look like clever statistical tools thrown at 
 So next time you're running a factor regression, remember: you're not just crunching numbers, you’re approximating the invisible hand that prices all possible states of the economy.
 
 Got thoughts, questions, or counterpoints? Drop a comment below. I’d love to hear your take.
+
 
 
 
