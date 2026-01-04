@@ -28,24 +28,29 @@ permalink: /teaching/
 .session-card {
     border: 1px solid #e5e5e5;
     border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 12px 16px;   /* reduced padding */
+    margin-bottom: 14px;  /* tighter spacing */
     background: #fafafa;
 }
 
 .session-card h3 {
     margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.05em;
     color: #2c3e50;
 }
 
+.session-links {
+    display: flex;
+    justify-content: center;  /* center horizontally */
+    gap: 20px;                /* space between links */
+}
 .session-links a {
-    display: inline-block;
-    margin-right: 15px;
+    margin-right: 0;        
     color: #3498db;
     font-weight: 500;
     text-decoration: none;
 }
-
 .session-links a:hover {
     text-decoration: underline;
 }
