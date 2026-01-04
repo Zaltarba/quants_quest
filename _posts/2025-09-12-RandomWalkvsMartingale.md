@@ -34,6 +34,10 @@ where $\epsilon_{t+1}$ are independent and identically distributed (i.i.d.) shoc
 
 At each step, the process moves up or down randomly, with no predictable trend. The past brings no information to the future.
 
+<div class="newsletter-container">
+  {% include newsletter_form.html %}
+</div>
+
 ### Financial interpretation 
 
 If stock prices followed a random walk, tomorrow’s price would equal today’s price plus a random shock. This aligns with the **Efficient Market Hypothesis** : if markets are efficient, new information arrives randomly, and so do price changes.  
@@ -55,7 +59,7 @@ plt.title("Random Walk Simulations")
 plt.show()
 ```
 
-<img src="quants.quest/images/RWvsM_fig_1.png" alt="Python simulation of random walk in finance">
+<img src="/images/RWvsM_fig_1.png" alt="Python simulation of random walk in finance">
 
 ## What is a Random Walk in Stock Prices?  {#Martingale}
 
@@ -194,7 +198,7 @@ plt.legend()
 plt.show()
 ```
 
-<img src="quants.quest/images/RWvsM_fig_2.png" alt="Martingale simulation example with Python">
+<img src="/images/RWvsM_fig_2.png" alt="Martingale simulation example with Python">
 
 ## Conclusion  {#Conclusion}
 
@@ -222,6 +226,7 @@ To deepen your understanding of martingales, stochastic discount factors, and th
   - [Radon–Nikodym theorem](https://en.wikipedia.org/wiki/Radon%E2%80%93Nikodym_theorem)
 
 These readings offer both the theoretical foundation and practical insights needed for modern quantitative finance.
+
 
 
 
