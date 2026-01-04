@@ -4,6 +4,18 @@ title: Search
 permalink: /search/
 ---
 
+<style>
+    #results-container a,
+    #results-container a:visited {
+        color: #5dade2; /* light blue */
+        text-decoration: none;
+    }
+    #results-container a:hover {
+        color: #3498db; /* slightly darker blue on hover */
+        text-decoration: underline;
+    }
+</style>
+
 <div id="search-container">
     <input type="text" id="search-input" placeholder="Search through the blog posts...">
     <ul id="results-container"></ul>
