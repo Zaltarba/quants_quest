@@ -17,10 +17,6 @@ Asset pricing has evolved dramatically over the past several decades, shifting f
 3. [Factor Models as SDFs in Disguise](#FactorModelsAreSDF)
 4. [Conclusion](#Conclusion)
 
-<div class="newsletter-container">
-  {% include newsletter_form.html %}
-</div>
-
 ## A Historical Perspective {#Context}
 
 In the beginning, investors created the Market. The Market was one, with a clear form and simple measure. And the investors said: Let risk be priced. And risk was priced. And they called this the [Capital Asset Pricing Model](https://doi.org/10.2307/2977928), born in 1964, the first of its kind.
@@ -122,7 +118,9 @@ And again the investors spoke: Let us make factors in our own image, many and di
 
 But despite the proliferation of models that price the market and explain the cross-section of returns, one central question remains: Where does all this actually come from? After all, divine metaphors aside, no one created the market from thin air with well structured properties and linear pricing properties. In this post, I want to explore one possible line of reasoning that helps explain why factor models work, not just how. My thinking here is largely influenced by the reading of [Cochrane (2005)](https://www.johnhcochrane.com/asset-pricing). 
 
-
+<div class="newsletter-container">
+  {% include newsletter_form.html %}
+</div>
 
 ## SDF: The True Concept Behind Asset Prices {#SDF}
 
@@ -154,7 +152,7 @@ In theory, if we knew the distribution of $m_{t+1}$, pricing would be straightfo
 
 <div style="text-align: center;">
   <img 
-    src="quants.quest/images/thats_my_quant.jpeg" 
+    src="/images/thats_my_quant.jpeg" 
     alt="That's my Quant"
     style="max-height: 350px; width: auto; max-width: 100%;">
 </div>
@@ -275,6 +273,7 @@ At first glance, factor models may look like clever statistical tools thrown at 
 So next time you're running a factor regression, remember: you're not just crunching numbers, you’re approximating the invisible hand that prices all possible states of the economy.
 
 Got thoughts, questions, or counterpoints? Drop a comment below. I’d love to hear your take.
+
 
 
 
