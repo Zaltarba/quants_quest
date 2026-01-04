@@ -20,12 +20,12 @@ tags: [bitcoin, crypto, volatility, parkinson estimator, range based, risk manag
 
 ## The Parkinson Estimator for Bitcoin Volatility {#introduction}
 
-In this third installment of our series on Bitcoin volatility, we delve into a new volatility estimator, this time based on High and Low data points. This approach not only leverages high and low price points but also offer more precise volatility estimations. To fetch the data, check out this [previous post](https://zaltarba.github.io/blog/DataBaseCreation/), where we explored how to use the Binance API.
+In this third installment of our series on Bitcoin volatility, we delve into a new volatility estimator, this time based on High and Low data points. This approach not only leverages high and low price points but also offer more precise volatility estimations. To fetch the data, check out this [previous post](quants.quest/DataBaseCreation/), where we explored how to use the Binance API.
 
 Small recap of the previous articles of this serie : 
 
-- [**Part 1 article**](https://zaltarba.github.io/blog/BitcoinVolatility-1/) introduced the basic concepts of volatility, focusing on historical volatility calculations using closing prices from Binance data and the EWMA estimator.
-- [**Part 2 article**](https://zaltarba.github.io/blog/BitcoinVolatility-2/) expanded on these concepts by examining the use of econometric model (GARCH) to modelize complex behaviours (ARCH effect).
+- [**Part 1 article**](quants.quest/BitcoinVolatility-1/) introduced the basic concepts of volatility, focusing on historical volatility calculations using closing prices from Binance data and the EWMA estimator.
+- [**Part 2 article**](quants.quest/BitcoinVolatility-2/) expanded on these concepts by examining the use of econometric model (GARCH) to modelize complex behaviours (ARCH effect).
 
 These analyses provided a groundwork for understanding the complexities of Bitcoin's price dynamics and set the stage for integrating more sophisticated statistical techniques.
 
@@ -69,7 +69,7 @@ Now that we have the variable $R$, whose expected value should be related to $ \
 
 **The Chicken and the Knife:** As a former physics teacher of mine used to say about thermodynamics equations: now you have the knife in your hand, and the chicken is right in front of you. Time to get to work! There's no simple trick to computing $ E\left[ R \right] $ in this case.
 
-<img src="/blog/images/chicken_and_the_knife.webp" alt="figure 0" width="500px">
+<img src="/quants_quest/images/chicken_and_the_knife.webp" alt="figure 0" width="500px">
 
 Here, we're working with an expectation, and as probabilists, we naturally express this as an integral. To move forward, we need the probability distribution of the range, which, luckily, can be derived from the joint distribution of the minimum and maximum values along the paths.
 
@@ -125,7 +125,7 @@ By the central limit theorem, as the sample size $ n $ increases, the estimator 
 
 ### Binance Bitcoin Data Preparation
 
-As we've done in previous articles, we’ll follow a similar data preparation process here. For those needing a refresher, we previously explained how to fetch and store Binance data in an HDF5 file in [this post](https://zaltarba.github.io/blog/DataBaseCreation/). It's this dataset we will exploit here.
+As we've done in previous articles, we’ll follow a similar data preparation process here. For those needing a refresher, we previously explained how to fetch and store Binance data in an HDF5 file in [this post](quants.quest/DataBaseCreation/). It's this dataset we will exploit here.
 
 ```python
 import pandas as pd 
@@ -220,7 +220,7 @@ plt.tight_layout(rect=[0, 0, 1, 0.9])  # Leave space at the top for titles
 plt.show()
 ```
 
-![figure 1](/blog/images/BitcoinVolatility-3-figure-1.png)
+![figure 1](/quants_quest/images/BitcoinVolatility-3-figure-1.png)
 
 Great! It appears that both estimators show fairly similar behavior, which makes sense given that both are designed to be consistent measures of volatility. However, there are bound to be some differences between them. To better understand these variations, let's calculate the percentage difference between the two estimators:
 
@@ -292,7 +292,7 @@ plt.tight_layout(rect=[0, 0, 1, 0.9])  # Leave space at the top for titles
 plt.show()
 ```
 
-![figure 2](/blog/images/BitcoinVolatility-3-figure-2.png)
+![figure 2](/quants_quest/images/BitcoinVolatility-3-figure-2.png)
 
 From the visual analysis of Bitcoin's price and volatility during the 2020 COVID-19 crash, a few key observations emerge:
 
@@ -365,7 +365,7 @@ plt.tight_layout(rect=[0, 0, 1, 0.9])  # Leave space at the top for titles
 plt.show()
 ```
 
-![figure 3](/blog/images/BitcoinVolatility-3-figure-3.png)
+![figure 3](/quants_quest/images/BitcoinVolatility-3-figure-3.png)
 
 In the analysis of Bitcoin's price and volatility during its 2024 All-Time High (ATH), several insights can be observed:
 
@@ -407,6 +407,7 @@ I’d love to hear your thoughts! Share your feedback, questions, or suggestions
 - Binance API Documentation: [Binance API](https://github.com/binance/binance-spot-api-docs)
 
 Feel free to explore these resources to deepen your understanding.
+
 
 
 
