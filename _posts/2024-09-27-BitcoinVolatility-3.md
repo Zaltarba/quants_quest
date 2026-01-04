@@ -69,7 +69,7 @@ Now that we have the variable $R$, whose expected value should be related to $ \
 
 **The Chicken and the Knife:** As a former physics teacher of mine used to say about thermodynamics equations: now you have the knife in your hand, and the chicken is right in front of you. Time to get to work! There's no simple trick to computing $ E\left[ R \right] $ in this case.
 
-<img src="/quants_quest/images/chicken_and_the_knife.webp" alt="figure 0" width="500px">
+<img src="/images/chicken_and_the_knife.webp" alt="figure 0" width="500px">
 
 Here, we're working with an expectation, and as probabilists, we naturally express this as an integral. To move forward, we need the probability distribution of the range, which, luckily, can be derived from the joint distribution of the minimum and maximum values along the paths.
 
@@ -220,7 +220,7 @@ plt.tight_layout(rect=[0, 0, 1, 0.9])  # Leave space at the top for titles
 plt.show()
 ```
 
-![figure 1](/quants_quest/images/BitcoinVolatility-3-figure-1.png)
+![figure 1](/images/BitcoinVolatility-3-figure-1.png)
 
 Great! It appears that both estimators show fairly similar behavior, which makes sense given that both are designed to be consistent measures of volatility. However, there are bound to be some differences between them. To better understand these variations, let's calculate the percentage difference between the two estimators:
 
@@ -292,7 +292,7 @@ plt.tight_layout(rect=[0, 0, 1, 0.9])  # Leave space at the top for titles
 plt.show()
 ```
 
-![figure 2](/quants_quest/images/BitcoinVolatility-3-figure-2.png)
+![figure 2](/images/BitcoinVolatility-3-figure-2.png)
 
 From the visual analysis of Bitcoin's price and volatility during the 2020 COVID-19 crash, a few key observations emerge:
 
@@ -365,7 +365,7 @@ plt.tight_layout(rect=[0, 0, 1, 0.9])  # Leave space at the top for titles
 plt.show()
 ```
 
-![figure 3](/quants_quest/images/BitcoinVolatility-3-figure-3.png)
+![figure 3](/images/BitcoinVolatility-3-figure-3.png)
 
 In the analysis of Bitcoin's price and volatility during its 2024 All-Time High (ATH), several insights can be observed:
 
@@ -407,6 +407,7 @@ I’d love to hear your thoughts! Share your feedback, questions, or suggestions
 - Binance API Documentation: [Binance API](https://github.com/binance/binance-spot-api-docs)
 
 Feel free to explore these resources to deepen your understanding.
+
 
 
 
