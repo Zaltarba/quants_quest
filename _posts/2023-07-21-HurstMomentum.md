@@ -49,7 +49,7 @@ To begin, traders calculate the Hurst exponent for various assets of interest. T
 
 Assets with a Hurst exponent greater than 0.5 are considered to exhibit persistent price movements. These are the assets that align well with the core principle of momentum trading, as they are more likely to maintain their current trends over a certain period. In this article, we will consider the assets with an hurst exponent above of 0.6 as in persistent state.
 
-To see more about the Hurst exponent and it's estimation, check my previous article [here](https://zaltarba.github.io/blog/HurstEstimatorsReview/).
+To see more about the Hurst exponent and it's estimation, check my previous article [here](https://zaltarba.github.io/quants_quest/HurstEstimatorsReview/).
 
 ### Implementing the Momentum Strategies
 
@@ -95,7 +95,7 @@ In this post, we will work we a small selection of historical American stocks :
 
 These stocks had over the last 10 years the folowing evolution :
 
-![Figure 1](/blog/images/MT_Evolution_of_stocks.png)
+![Figure 1](/quants_quest/images/MT_Evolution_of_stocks.png)
 
 ## Coding the strategy 
 
@@ -290,11 +290,11 @@ Now that we an coded our momentum strategy, we can take a look at our results. T
 
 First we can look at the strategy performance for each stock :
 
-![Figure 2](/blog/images/MT_Stocks_capital_gain.png)
+![Figure 2](/quants_quest/images/MT_Stocks_capital_gain.png)
 
 First of all, both strategies have gained capital for some stock and loss capital for some stocks. But from this graph, it doesn't seems our momentum trading strategy added value in comparaison to the buy and hold strategy. In order to check that, we look at the portfolio performance :
 
-![figure 3](/blog/images/MT_Portfolio_capital_gain.png)
+![figure 3](/quants_quest/images/MT_Portfolio_capital_gain.png)
 
 Indeed, it appears we have almost no extra capital gain with our strategy. Yet, if look at both strategies performance, our trading strategy seems to get smoother returns.  
 
