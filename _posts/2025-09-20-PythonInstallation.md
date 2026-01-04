@@ -88,6 +88,9 @@ Now, your notebook cells will run inside the clean conda environment.
    
 Once selected, running scripts (Run → Run Without Debugging or the green button) will execute in your conda environment.
 
+<div class="newsletter-container">
+  {% include newsletter_form.html %}
+</div>
 
 
 
