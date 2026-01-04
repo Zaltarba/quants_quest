@@ -61,6 +61,10 @@ $$
 
 which and the random walk $(W_t)$ is a **martingale**.
 
+<div class="newsletter-container">
+  {% include newsletter_form.html %}
+</div>
+
 ### Random Walk with Drift
 
 However, financial modelling requires more often than not to have $\mathbb{E}[\varepsilon_i] = r$, with $r$ a non null constant. To adjust, we can use $\tilde{\varepsilon_i} = \varepsilon_i - r$ to define a new random walk with increments $\tilde{\varepsilon_i}$ that we will note $\tilde{W_t}$. From the relationship we can say that $\tilde{W_t} = W_t - r \times t$ or equivalently $W_t = \tilde{W_t} + r \times t$.
@@ -233,6 +237,7 @@ If you’d like to explore these ideas more deeply, the following resources prov
    A mathematically precise introduction to the link between real-world and risk-neutral measures.
 
 Together, these texts bridge intuition and mathematics, reinforcing how **changing measures** connects probability theory, pricing, and the economics of risk.
+
 
 
 
