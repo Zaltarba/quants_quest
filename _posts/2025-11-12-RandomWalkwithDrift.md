@@ -24,7 +24,7 @@ Let's make some definitions here to ensure we all speak the same language (thank
 
 <div style="text-align: center;">
   <img 
-    src="/quants_quest/images/what_do_you_mean_drift.jpg" 
+    src="quants.quest/images/what_do_you_mean_drift.jpg" 
     alt="Drift ?"
     style="max-height: 350px; width: auto; max-width: 100%;">
 </div>
@@ -106,7 +106,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-<img src="/quants_quest/images/RWwithD_fig_1.png" alt="Random Walk with Drift simulation example with Python">
+<img src="quants.quest/images/RWwithD_fig_1.png" alt="Random Walk with Drift simulation example with Python">
 
 ## From Drift to Martingale {#RandomWalkDrift_Martingale}
 
@@ -233,6 +233,7 @@ If you’d like to explore these ideas more deeply, the following resources prov
    A mathematically precise introduction to the link between real-world and risk-neutral measures.
 
 Together, these texts bridge intuition and mathematics, reinforcing how **changing measures** connects probability theory, pricing, and the economics of risk.
+
 
 
 
