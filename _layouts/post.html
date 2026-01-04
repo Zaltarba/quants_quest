@@ -31,42 +31,35 @@ layout: default
     Written on {{ page.date | date: "%B %e, %Y" }}
   </div>-->
 
-  <div class="entry">
-    {% capture rendered_content %}
-      {{ content | markdownify }}
-    {% endcapture %}
-  
-    {% assign newsletter_inserted = false %}
-  
-    {% comment %}
-      Split rendered HTML by <h2> to detect headings.
-      The <h2> tags come from ## after markdownify, so we preserve $$ ... $$ math.
-    {% endcomment %}
-  
-    {% assign parts = rendered_content | split: "<h2>" %}
-    {% for part in parts %}
-      {% if forloop.first %}
-        {{ part }}
-      {% else %}
-        <h2>{{ part | split: "</h2>" | first }}</h2>
-        {{ part | remove_first: part | split: "</h2>" | last }}
-  
-        {% if forloop.index == 2 and newsletter_inserted == false %}
-          <div class="newsletter-container">
-            {% include newsletter_form.html %}
-          </div>
-          {% assign newsletter_inserted = true %}
-        {% endif %}
-      {% endif %}
-    {% endfor %}
-  
-    {% if newsletter_inserted == false %}
-      <div class="newsletter-container">
-        {% include newsletter_form.html %}
-      </div>
-    {% endif %}
-  </div>
+<div class="entry">
+  {% assign lines = content | split: "\n" %}
+  {% assign heading_count = 0 %}
+  {% assign newsletter_inserted = false %}
 
+  {% capture final_content %}{% endcapture %}
+
+  {% for line in lines %}
+    {% assign trimmed = line | strip %}
+    {% if trimmed contains "## " %}
+      {% assign heading_count = heading_count | plus: 1 %}
+    {% endif %}
+
+    {% capture final_content %}
+      {{ final_content }}
+      {{ line }}
+      {% if heading_count == 2 and newsletter_inserted == false %}
+        <div class="newsletter-container">
+          {% include newsletter_form.html %}
+        </div>
+        {% assign newsletter_inserted = true %}
+      {% endif %}
+      {{ "\n" }}
+    {% endcapture %}
+  {% endfor %}
+
+  {{ final_content | markdownify }}
+</div>
+  
 </article>
 
 <div id="comments">
