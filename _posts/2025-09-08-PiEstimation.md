@@ -36,7 +36,7 @@ If we can find a random variable $X$ such that $\mathbb{E}[X] = \pi$, then simul
 
 But this here is a quant blog. Suppose we want the absolute error to be less than $\varepsilon > 0$ with probability at least $1 - \alpha$. Can we solve this problem ? Answer is yes, but with some maths.
 
-![funny math meme](/quants_quest/images/here_we_go_again.png)
+![funny math meme](/images/here_we_go_again.png)
 
 Let's consider $\text{Var}(X) = \sigma^2$, then by the Central Limit Theorem, the sample mean
 
@@ -78,6 +78,9 @@ $$
 
 This formula provides a practical guideline: once we know or estimate the variance $\sigma^2$ of the Monte Carlo variable, we can determine how many simulations are needed to achieve a desired accuracy $\varepsilon$ with a given confidence level $1 - \alpha$.
 
+<div class="newsletter-container">
+  {% include newsletter_form.html %}
+</div>
 
 ## Using Random Sampling to Estimate $\pi$ {#probabilities}
 
@@ -139,7 +142,7 @@ print(pi_estimate)
 
 Running this code with one million points gives a fairly good approximation of $\pi$. Increasing `n` will further improve accuracy.
 
-![Monte Carlo Simulation Pi Estimation](/quants_quest/images/PiEstimation_figure_1.png)
+![Monte Carlo Simulation Pi Estimation](/images/PiEstimation_figure_1.png)
 
 ## Conclusion  {#conclusion}
 
