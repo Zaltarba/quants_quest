@@ -14,6 +14,15 @@ permalink: /search/
         color: #3498db; /* slightly darker blue on hover */
         text-decoration: underline;
     }
+    #results-container a h1,
+    #results-container a:visited h1 {
+        color: #5dade2; /* light blue */
+    }
+    
+    #results-container a:hover h1 {
+        color: #3498db; /* darker blue on hover */
+    }
+
 </style>
 
 <div id="search-container">
