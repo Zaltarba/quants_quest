@@ -109,47 +109,47 @@ permalink: /teaching/
     <div class="session-card">
         <h3>📘 Session 1</h3>
         <div class="session-links">
-            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_1.ipynb">TP</a>
-            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_1_corrected.ipynb">Correction</a>
+            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_1.ipynb">Exercises</a>
+            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_1_corrected.ipynb">Solutions</a>
         </div>
     </div>
 
     <div class="session-card">
         <h3>📘 Session 2</h3>
         <div class="session-links">
-            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_2.ipynb">TP</a>
-            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_2_corrected.ipynb">Correction</a>
+            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_2.ipynb">Exercises</a>
+            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_2_corrected.ipynb">Solutions</a>
         </div>
     </div>
 
     <div class="session-card">
         <h3>📘 Session 3</h3>
         <div class="session-links">
-            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_3.ipynb">TP</a>
-            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_3_corrected.ipynb">Correction</a>
+            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_3.ipynb">Exercises</a>
+            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_3_corrected.ipynb">Solutions</a>
         </div>
     </div>
 
     <div class="session-card">
         <h3>📘 Session 4</h3>
         <div class="session-links">
-            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_4.ipynb">TP</a>
-            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_4_corrected.ipynb">Correction</a>
+            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_4.ipynb">Exercises</a>
+            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_4_corrected.ipynb">Solutions</a>
         </div>
     </div>
 
     <div class="session-card">
         <h3>📘 Session 5</h3>
         <div class="session-links">
-            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_5.ipynb">TP</a>
-            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_5_corrected.ipynb">Correction</a>
+            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_5.ipynb">Exercises</a>
+            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_5_corrected.ipynb">Solutions</a>
         </div>
     </div>
 
     <div class="session-card">
         <h3>📘 Session 6</h3>
         <div class="session-links">
-            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_6.ipynb">TP</a>
+            <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_6.ipynb">Exercises</a>
         </div>
     </div>
 
@@ -159,7 +159,8 @@ permalink: /teaching/
     <h3>📝 Assessments</h3>
 
     <p><strong>Paper Exam</strong><br>
-    6 November 2025 — 50% of final grade</p>
+    6 November 2025<br>
+    50% of final grade</p>
 
     <p><strong>Group Project</strong><br>
     Due 9 January 2025 (oral presentation)<br>
