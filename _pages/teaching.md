@@ -94,9 +94,6 @@ permalink: /teaching/
         <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_1.ipynb">TP</a>
         <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_1_corrected.ipynb">Correction</a>
     </div>
-</div>
-
-<div class="session-card">
     <h3>📘 Session 2</h3>
     <div class="session-links">
         <a href="https://colab.research.google.com/github/Zaltarba/PSL_python_for_finance/blob/main/python_session_2.ipynb">TP</a>
