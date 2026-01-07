@@ -53,8 +53,12 @@ $$
 
 The subtraction ensures **antagonistic relationships invert the message**. 
 
-<img src="/images/SDA_architecture.png" alt="Signed Dual Attention Architecture">
-
+<div style="text-align: center;">
+  <img 
+    src="/images/sda_architecture.png" 
+    alt="Drift ?"
+    style="max-height: 350px; width: auto; max-width: 100%;">
+</div>
 ### Link with Two-Head Attention  {#link-with-two-head-attention}
 
 The Signed Dual Attention (SDA) block can be seen as a constrained form of a two-head self-attention mechanism. Imagine a standard two-head attention layer with parameters defined as  
@@ -90,4 +94,5 @@ This perspective highlights SDA as a compact and efficient alternative to multi-
 
 
 Preliminary experiments suggest that SDA behaves differently across datasets depending on the underlying **autocorrelation structure**, particularly when both positive and negative dependencies coexist. This makes sense since by $W^O$ inforce both aspect of the relationship to have an equal influence, when it can depending of the data not be the case. I see potential in learning adaptive weighting between the positive and negative attention components $A^{+}$ and $A^{-}$ instead of assigning them equal importance. This enhancement could improve performance in settings where negative interactions are weak or primarily noisy.
+
 
