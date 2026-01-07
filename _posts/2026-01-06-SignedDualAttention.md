@@ -44,8 +44,11 @@ $$
 \begin{align}
 A^+ &= \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right) \\
 A^- &= \text{softmax}\left(-\frac{QK^\top}{\sqrt{d_k}}\right) \\
-\text{SDA}(Q,K,V) &= (A^+ - A^-) V
 \end{align}
+$$
+
+$$
+\text{SDA}(Q,K,V) &= (A^+ - A^-) V
 $$
 
 - $A^+$ propagates **positive signals**.
@@ -94,5 +97,6 @@ This perspective highlights SDA as a compact and efficient alternative to multi-
 
 
 Preliminary experiments suggest that SDA behaves differently across datasets depending on the underlying **autocorrelation structure**, particularly when both positive and negative dependencies coexist. This makes sense since by $W^O$ inforce both aspect of the relationship to have an equal influence, when it can depending of the data not be the case. I see potential in learning adaptive weighting between the positive and negative attention components $A^{+}$ and $A^{-}$ instead of assigning them equal importance. This enhancement could improve performance in settings where negative interactions are weak or primarily noisy.
+
 
 
