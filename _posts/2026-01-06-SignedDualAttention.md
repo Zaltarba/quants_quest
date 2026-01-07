@@ -76,7 +76,7 @@ If we choose
 $$
 W^O =
 \begin{bmatrix}
-I_d \\[2pt]
+I_d \\
 I_d
 \end{bmatrix}
 \in \mathbb{R}^{2d \times d},
@@ -87,5 +87,6 @@ the projection simply performs an additive fusion, leading to $H = H_1 + H_2$. U
 This perspective highlights SDA as a compact and efficient alternative to multi-head attention—able to capture both supportive and antagonistic interactions while using half the parameter count and maintaining the computational footprint of a single-head layer.
 
 ## Future Directions  {#future-directions}
+
 
 Preliminary experiments suggest that SDA behaves differently across datasets depending on the underlying **autocorrelation structure**, particularly when both positive and negative dependencies coexist. This makes sense since by $W^O$ inforce both aspect of the relationship to have an equal influence, when it can depending of the data not be the case. I see potential in learning adaptive weighting between the positive and negative attention components $A^{+}$ and $A^{-}$ instead of assigning them equal importance. This enhancement could improve performance in settings where negative interactions are weak or primarily noisy.
