@@ -17,6 +17,7 @@ tags: [monte carlo simulation, python, estimate pi, statistics, pi approximation
 4. [A Python Implementation](#implementation)  
 5. [Conclusion](#conclusion)  
 6. [References and Further Reading](#references-and-further-reading)
+7. [Monte Carlo Interview Questions for Finance Jobs](#monte-carlo-interview-questions)
 
 ## Introduction  {#introduction}
 
@@ -154,3 +155,81 @@ Estimating $\pi$ with Monte Carlo is a beautiful demonstration of how probabilit
 - [Central Limit Theorem — Wikipedia](https://en.wikipedia.org/wiki/Central_limit_theorem)  
 - Gentle, J. E. (2003). *Random Number Generation and Monte Carlo Methods*. Springer.
 
+## Monte Carlo Interview Questions for Finance Jobs {#monte-carlo-interview-questions}
+
+<details>
+  <summary><strong>1. What is a Monte Carlo simulation, and why is it useful in quantitative finance?</strong></summary>
+  <p>
+    Monte Carlo simulation uses random sampling to approximate complex probabilistic outcomes. In finance, it's used for option pricing, risk management, portfolio optimization, and evaluating scenarios where closed-form solutions are difficult.
+  </p>
+</details>
+
+<details>
+  <summary><strong>2. How does Monte Carlo simulation leverage randomness to approximate deterministic quantities like π?</strong></summary>
+  <p>
+    By generating many random points in a known geometric space (e.g., a square), we can estimate the probability of events (e.g., falling inside a circle). Multiplying this probability by the appropriate factor gives an approximation of π.
+  </p>
+</details>
+
+<details>
+  <summary><strong>3. What role does the Central Limit Theorem play in Monte Carlo methods?</strong></summary>
+  <p>
+    The Central Limit Theorem justifies that the sample mean of independent simulations approximates a normal distribution for large samples, allowing us to compute confidence intervals and error bounds for estimates.
+  </p>
+</details>
+
+<details>
+  <summary><strong>4. How do you determine the number of Monte Carlo simulations needed to achieve a desired accuracy?</strong></summary>
+  <p>
+    Using the standard error formula: \( SE = \sigma / \sqrt{n} \), and desired error \(\varepsilon\) at confidence level \(1-\alpha\), the required simulations are \( n \ge (z_{1-\alpha/2} \cdot \sigma / \varepsilon)^2 \).
+  </p>
+</details>
+
+<details>
+  <summary><strong>5. How can π be estimated using random sampling in a unit square?</strong></summary>
+  <p>
+    Generate uniform random points in [-1,1]². Count the fraction inside the unit circle. Multiply this fraction by 4 to estimate π: \( \pi \approx 4 \cdot (\text{points inside circle}/\text{total points}) \).
+  </p>
+</details>
+
+<details>
+  <summary><strong>6. What is the variance of the Monte Carlo estimator when estimating π?</strong></summary>
+  <p>
+    Using the indicator variable for a point inside the circle: \( \sigma^2 = \frac{\pi}{4}\left(1 - \frac{\pi}{4}\right) \). The standard error of the mean decreases with \(1/\sqrt{n}\).
+  </p>
+</details>
+
+<details>
+  <summary><strong>7. How would you implement a Monte Carlo simulation to estimate π in Python efficiently?</strong></summary>
+  <p>
+    Use vectorized operations in NumPy to generate random points and compute the fraction inside the unit circle. Example: 
+    <pre><code>
+import numpy as np
+n = 1_000_000
+x, y = np.random.uniform(-1, 1, n), np.random.uniform(-1, 1, n)
+pi_estimate = 4 * ((x**2 + y**2) <= 1).mean()
+print(pi_estimate)
+    </code></pre>
+  </p>
+</details>
+
+<details>
+  <summary><strong>8. How can variance reduction techniques improve Monte Carlo estimation?</strong></summary>
+  <p>
+    Techniques like antithetic variates, control variates, and quasi-random sequences reduce estimator variance, improving accuracy without increasing the number of simulations—a critical tool in hedge fund risk modeling.
+  </p>
+</details>
+
+<details>
+  <summary><strong>9. Why is understanding the standard error important in quantitative simulations?</strong></summary>
+  <p>
+    The standard error quantifies the expected fluctuation of the estimate around the true value, allowing quants to construct confidence intervals and assess the reliability of Monte Carlo results.
+  </p>
+</details>
+
+<details>
+  <summary><strong>10. Where are Monte Carlo methods commonly applied in quantitative finance?</strong></summary>
+  <p>
+    Applications include derivative pricing (e.g., options), Value-at-Risk (VaR) calculation, stress testing portfolios, scenario analysis, and simulating complex stochastic processes like interest rates or asset paths.
+  </p>
+</details>
