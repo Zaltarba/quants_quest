@@ -4,7 +4,6 @@ layout: default
 
 <article class="post detailed">
   <h1>{{ page.title }}</h1>
-
   <div>
     <p class="author_title">{{site.author}}  ·  {{ page.date | date: "%B %e, %Y" }}</p>
     {% if page.last_modified_at %}
@@ -30,7 +29,7 @@ layout: default
   <div class="entry">
     {{ content }}
   </div>
-  
+<link rel="stylesheet" href="{{ '/assets/post_custom.css' | relative_url }}">
 </article>
 
 <div id="comments">
