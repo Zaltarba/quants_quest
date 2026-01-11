@@ -17,7 +17,7 @@ tags: [monte carlo simulation, python, estimate pi, statistics, pi approximation
 4. [A Python Implementation](#implementation)  
 5. [Conclusion](#conclusion)  
 6. [References and Further Reading](#references-and-further-reading)
-7. [Monte Carlo Interview Questions for Finance Jobs](#monte-carlo-interview-questions)
+7. [Monte Carlo Interview Questions](#monte-carlo-interview-questions)
 
 ## Introduction  {#introduction}
 
@@ -155,7 +155,7 @@ Estimating $\pi$ with Monte Carlo is a beautiful demonstration of how probabilit
 - [Central Limit Theorem — Wikipedia](https://en.wikipedia.org/wiki/Central_limit_theorem)  
 - Gentle, J. E. (2003). *Random Number Generation and Monte Carlo Methods*. Springer.
 
-## Monte Carlo Interview Questions for Finance Jobs {#monte-carlo-interview-questions}
+## Monte Carlo Interview Questions {#monte-carlo-interview-questions}
 
 <details>
   <summary><strong>1. What is a Monte Carlo simulation, and why is it useful in quantitative finance?</strong></summary>
