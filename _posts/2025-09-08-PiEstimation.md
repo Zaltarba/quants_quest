@@ -8,7 +8,6 @@ hidden: false
 tags: [monte carlo simulation, python, estimate pi, statistics, pi approximation, random sampling]
 ---
 
-
 ## Table of Contents
 
 1. [Introduction](#introduction)  
