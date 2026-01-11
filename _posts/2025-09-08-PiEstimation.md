@@ -187,7 +187,10 @@ Estimating $\pi$ with Monte Carlo is a beautiful demonstration of how probabilit
 <details>
   <summary><strong>5. How can π be estimated using random sampling in a unit square?</strong></summary>
   <p>
-    Generate uniform random points in [-1,1]². Count the fraction inside the unit circle. Multiply this fraction by 4 to estimate π: \( \pi \approx 4 \cdot (\text{points inside circle}/\text{total points}) \).
+    Generate uniform random points in $[-1,1]^2$. Count the fraction inside the unit circle. Multiply this fraction by 4 to estimate π: 
+    $$
+    \pi \approx 4 \times frac{\text{points inside circle}}{\text{total points}}
+    $$
   </p>
 </details>
 
