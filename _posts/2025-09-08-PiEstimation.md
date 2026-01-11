@@ -2,6 +2,7 @@
 layout: post
 title: Estimating Pi (π) with Monte Carlo Simulation in Python
 categories: [Statistics, Python]
+date: 2026-01-03 08:00:00 +0000
 excerpt: Learn how to estimate the value of π using Monte Carlo simulation in Python. A step-by-step guide with math, code, and visualization.
 image: /thumbnails/PiEstimation.jpeg
 hidden: false
