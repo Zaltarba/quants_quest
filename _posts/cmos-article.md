@@ -1,0 +1,348 @@
+---
+layout: post
+title: "cmos wip"
+categories: [Research, Computer Science]
+excerpt: "Discover Signed Dual Attention: an approach to model both positive and negative relationships in deep learning"
+image: /thumbnails/SDA_explained.jpeg
+hidden: True
+tags: [attention, transformers, computer science, cs, time series, deep learning]
+---
+
+<!-- meta-description: Discover CMoS, the 750-parameter model that outperforms 50M-parameter Transformers on time series forecasting — with clean math, interpretable weights, and a Wold decomposition connection. -->
+
+In most domains of machine learning, bigger models win. But time series forecasting datasets are small — not "small" in the deep learning sense of a few million samples, but small as in a few thousand observations per channel. The ETTh1 benchmark has 17,420 time steps across 7 channels. Electricity has 26,304 hourly readings. Compare that to ImageNet or a GPT training corpus. In this regime, overfitting is the dominant enemy, and bringing a 50-million-parameter Transformer to a 17,000-step dataset is like bringing a bazooka to a knife fight — except the bazooka might shoot you in the foot.
+
+[CMoS](https://arxiv.org/abs/2505.19090) (Si et al., ICML 2025) takes the "less is more" trend in time series forecasting to its logical extreme. On ETTh1, it achieves state-of-the-art MSE with roughly **750 parameters** — not 750K, not 750M. Just 750. This post breaks down the three ideas that make it work: chunk-wise correlation, noise robustness via weight averaging, and a periodicity injection scheme that mirrors Wold's classical decomposition theorem.
+
+## Why the Lightweight Trend Matters
+
+The story starts with DLinear (Zeng et al., 2023), which embarrassingly showed that simple linear layers could match or beat complex Transformer architectures on standard benchmarks. Then came FITS, SparseTSF, and CycleNet, each pushing the parameter count lower while maintaining competitive accuracy.
+
+<div style="margin: 2.5em 0; overflow-x: auto;">
+  <table style="border-collapse: collapse; width: 100%; font-family: 'Courier New', monospace; font-size: 0.82em;">
+    <thead>
+      <tr style="border-bottom: 2px solid #333;">
+        <th style="text-align: left; padding: 10px 14px; color: #888; font-weight: 600; letter-spacing: 0.04em;">Model</th>
+        <th style="text-align: left; padding: 10px 14px; color: #888; font-weight: 600; letter-spacing: 0.04em;">Year</th>
+        <th style="text-align: right; padding: 10px 14px; color: #888; font-weight: 600; letter-spacing: 0.04em;">Approx. parameters (ETTh1)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom: 1px solid #222;">
+        <td style="padding: 9px 14px;">PatchTST</td>
+        <td style="padding: 9px 14px; color: #666;">2023</td>
+        <td style="padding: 9px 14px; text-align: right;">~50 M</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #222;">
+        <td style="padding: 9px 14px;">iTransformer</td>
+        <td style="padding: 9px 14px; color: #666;">2024</td>
+        <td style="padding: 9px 14px; text-align: right;">~5 M</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #222;">
+        <td style="padding: 9px 14px;">DLinear</td>
+        <td style="padding: 9px 14px; color: #666;">2023</td>
+        <td style="padding: 9px 14px; text-align: right;">~75 K</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #222;">
+        <td style="padding: 9px 14px;">SparseTSF</td>
+        <td style="padding: 9px 14px; color: #666;">2024</td>
+        <td style="padding: 9px 14px; text-align: right;">~10 K</td>
+      </tr>
+      <tr>
+        <td style="padding: 9px 14px; font-weight: bold;">CMoS</td>
+        <td style="padding: 9px 14px; color: #666;">2025</td>
+        <td style="padding: 9px 14px; text-align: right; font-weight: bold;">~750</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+The philosophical question behind this progression is pointed: if a dataset of 17,000 time steps can be forecast well by 750 parameters, what does that tell us about the intrinsic dimensionality of the forecasting problem? CMoS's answer is that it is very low, and that the right inductive bias can exploit it.
+
+## The Core Idea: Chunks, Not Points
+
+Most linear forecasting models operate at the **point level**: each future time step is a linear combination of all past time steps. If the lookback window has $L$ points and the forecast horizon has $H$ points, the weight matrix $\theta$ has $L \times H$ entries.
+
+CMoS divides both the lookback window and the forecast horizon into **chunks** of size $S$, then models chunk-to-chunk dependencies instead:
+
+$$\hat{x}_{t+i} = \sum_{j=0}^{L/S} \theta_{ij} \, x_{t-j} + b_i$$
+
+where each $x_{t+i}$ and $x_{t-j}$ are now chunks (vectors of size $S$), not individual points. The weight matrix shrinks from $L \times H$ to $\frac{L}{S} \times \frac{H}{S}$ — a reduction by a factor of $S^2$.
+
+<div style="margin: 2.5em 0; overflow-x: auto;">
+  <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 700px; display: block; font-family: 'Courier New', monospace;">
+    <text x="20" y="30" fill="#555" font-size="10" letter-spacing="1.5" text-transform="uppercase">POINT-WISE (DLinear)</text>
+    <g transform="translate(20, 45)">
+      <rect x="0"   y="0" width="16" height="22" fill="#c0392b" opacity="0.35" rx="2"/>
+      <rect x="20"  y="0" width="16" height="22" fill="#c0392b" opacity="0.35" rx="2"/>
+      <rect x="40"  y="0" width="16" height="22" fill="#c0392b" opacity="0.35" rx="2"/>
+      <rect x="60"  y="0" width="16" height="22" fill="#c0392b" opacity="0.35" rx="2"/>
+      <rect x="80"  y="0" width="16" height="22" fill="#c0392b" opacity="0.35" rx="2"/>
+      <rect x="100" y="0" width="16" height="22" fill="#c0392b" opacity="0.35" rx="2"/>
+      <rect x="120" y="0" width="16" height="22" fill="#c0392b" opacity="0.35" rx="2"/>
+      <rect x="140" y="0" width="16" height="22" fill="#c0392b" opacity="0.35" rx="2"/>
+      <text x="80" y="40" fill="#888" font-size="9" text-anchor="middle">L = 8 points</text>
+    </g>
+    <text x="190" y="62" fill="#aaa" font-size="16">→</text>
+    <g transform="translate(210, 44)">
+      <rect x="0" y="0" width="56" height="24" fill="none" stroke="#c0392b" stroke-width="1" stroke-dasharray="4,3" rx="3"/>
+      <text x="28" y="16" fill="#c0392b" font-size="9" text-anchor="middle">θ : 8 × 2</text>
+      <text x="28" y="38" fill="#666" font-size="8" text-anchor="middle">16 params</text>
+    </g>
+    <text x="278" y="62" fill="#aaa" font-size="16">→</text>
+    <g transform="translate(298, 45)">
+      <rect x="0"  y="0" width="16" height="22" fill="#c0392b" opacity="0.65" rx="2"/>
+      <rect x="20" y="0" width="16" height="22" fill="#c0392b" opacity="0.65" rx="2"/>
+      <text x="16" y="40" fill="#888" font-size="9" text-anchor="middle">H = 2</text>
+    </g>
+
+    <line x1="0" y1="108" x2="700" y2="108" stroke="#2a2a2a" stroke-width="1"/>
+
+    <text x="20" y="135" fill="#555" font-size="10" letter-spacing="1.5">CHUNK-WISE (CMoS, S = 4)</text>
+    <g transform="translate(20, 150)">
+      <rect x="0"   y="0" width="64" height="22" fill="#1a6a8a" opacity="0.35" rx="3" stroke="#1a6a8a" stroke-width="1"/>
+      <text x="32" y="15" fill="#7ecbdf" font-size="8" text-anchor="middle">chunk 1</text>
+      <rect x="72"  y="0" width="64" height="22" fill="#1a6a8a" opacity="0.35" rx="3" stroke="#1a6a8a" stroke-width="1"/>
+      <text x="104" y="15" fill="#7ecbdf" font-size="8" text-anchor="middle">chunk 2</text>
+      <text x="80" y="40" fill="#888" font-size="9" text-anchor="middle">L/S = 2 chunks</text>
+    </g>
+    <text x="190" y="167" fill="#aaa" font-size="16">→</text>
+    <g transform="translate(210, 149)">
+      <rect x="0" y="0" width="56" height="24" fill="none" stroke="#7ecbdf" stroke-width="1.5" rx="3"/>
+      <text x="28" y="16" fill="#7ecbdf" font-size="9" text-anchor="middle" font-weight="bold">θ : 2 × 1</text>
+      <text x="28" y="38" fill="#7ecbdf" font-size="8" text-anchor="middle" font-weight="bold">2 params</text>
+    </g>
+    <text x="278" y="167" fill="#aaa" font-size="16">→</text>
+    <g transform="translate(298, 150)">
+      <rect x="0" y="0" width="64" height="22" fill="#1a6a8a" opacity="0.6" rx="3" stroke="#7ecbdf" stroke-width="1.5"/>
+      <text x="32" y="15" fill="#7ecbdf" font-size="8" text-anchor="middle">forecast</text>
+      <text x="32" y="38" fill="#888" font-size="9" text-anchor="middle">H/S = 1 chunk</text>
+    </g>
+
+    <rect x="380" y="148" width="300" height="38" fill="transparent" stroke="#2a2a2a" stroke-width="1" rx="4"/>
+    <text x="530" y="163" fill="#aaa" font-size="9" text-anchor="middle">S² reduction in parameters</text>
+    <text x="530" y="178" fill="#7ecbdf" font-size="9" text-anchor="middle" font-weight="bold">16 params → 2 params (8× fewer)</text>
+  </svg>
+</div>
+
+The parameter reduction is significant, but it is not even the most important benefit. The real win is **noise robustness**, and this is where the paper delivers a clean theorem.
+
+## Noise Robustness: A Theorem for Regression People
+
+If you have taken econometrics or any statistical learning course, you know the fundamental tension: adding parameters lets you fit the signal better, but also lets you fit the noise. This is the bias-variance tradeoff.
+
+CMoS's Theorem 3.2 formalizes exactly why chunking helps from a noise perspective.
+
+### Setup
+
+Consider a linear regression $f(x; \theta) = \theta^\top x$. Suppose the input is corrupted by Gaussian noise: $x' = x + \delta$ where $\delta \sim \mathcal{N}(\mu, \sigma^2 I)$.
+
+**Definition 3.1.** The *noise sensitivity* of the model is the variance of the output change caused by the noise:
+
+$$\text{Noise Sensitivity} = \text{Var}(\theta^\top \delta) = \sigma^2 \|\theta\|_2^2$$
+
+This is intuitive: the model's sensitivity to input noise is proportional to the squared norm of the weights. Large weights amplify noise. Small weights dampen it. It is exactly why Ridge regression adds an $\ell_2$ penalty on $\|\theta\|^2$.
+
+### The Chunking Theorem
+
+Given point-wise weights $\{\theta_1, \ldots, \theta_n\}$ within a chunk, define the chunk weight as their weighted average:
+
+$$\theta^* = \frac{\sum_{i=1}^n \alpha_i \theta_i}{\sum_{i=1}^n \alpha_i}, \quad \alpha_i \geq 0$$
+
+**Theorem 3.2.** The noise sensitivity of the chunk-wise model is never worse than the point-wise model:
+
+$$\sigma^2 \, \theta^{*2} \leq \sigma^2 \sum_{i=1}^n \theta_i^2$$
+
+### The Proof (Two Lines of Cauchy-Schwarz)
+
+Since $(\sum \alpha_i)^2 \geq \sum \alpha_i^2$:
+
+$$\theta^{*2} = \left(\frac{\sum \alpha_i \theta_i}{\sum \alpha_i}\right)^2 \leq \frac{(\sum \alpha_i \theta_i)^2}{\sum \alpha_i^2}$$
+
+By Cauchy-Schwarz: $(\sum \alpha_i \theta_i)^2 \leq (\sum \alpha_i^2)(\sum \theta_i^2)$, giving:
+
+$$\theta^{*2} \leq \sum \theta_i^2 \quad \blacksquare$$
+
+Equality holds only when at most one $\alpha_i$ is non-zero. In every other case, chunking strictly reduces noise sensitivity. If you know Ridge regression, you already understand the mechanism: Ridge adds a soft penalty $\lambda \|\theta\|^2$ to shrink weights and reduce overfitting. Chunking achieves the same effect structurally, as a hard constraint. For noisy time series, which is most real-world data, this is a winning trade.
+
+## Correlation Mixing: PCA for Temporal Structures
+
+For multivariate forecasting with $N$ channels, each channel may have a different temporal structure. Industrial electricity load has long-term dependencies; residential demand reacts to short-term weather. Modeling this diversity without $N$ separate models (overfitting) or one shared model (underfitting) is a genuine challenge.
+
+CMoS learns $K$ shared **basis correlation matrices** $\theta^0, \theta^1, \ldots, \theta^{K-1}$ (typically $K = 4$), and for each channel $n$ computes a weighted combination:
+
+$$\hat{x}^n_{t+i} = \frac{1}{\sum_k e^{\gamma^n_k}} \sum_{k=0}^{K-1} e^{\gamma^n_k} \left( \sum_{j=0}^{L/S} \theta^k_{ij} \, x^n_{t-j} + b^k_i \right)$$
+
+The channel-specific weights $\Gamma^n = \{\gamma^n_0, \ldots, \gamma^n_{K-1}\}$ are computed in two stages: a per-channel Conv1D for smoothing, followed by a shared linear layer that maps the smoothed representation to softmax weights over the $K$ matrices.
+
+If you know **Principal Component Analysis**, this structure should feel familiar. PCA decomposes a high-dimensional covariance matrix as a weighted sum of $K$ rank-1 components. The insight is that covariance matrices are approximately low-rank: most of the structure lives in a small subspace. CMoS makes the analogous claim for the space of temporal correlation structures. Each channel's unique temporal behavior is a point in the $K$-dimensional space spanned by the basis matrices — and the basis is learned end-to-end through backpropagation rather than via eigendecomposition, so it optimizes forecasting error directly.
+
+The paper provides an information-theoretic motivation. If channels share dependencies (mutual information $I(X_i, X_j) > 0$), then their joint entropy is less than the sum of marginal entropies: $H(X_1, \ldots, X_N) < \sum H(X_i)$. A low-rank basis exploits exactly this redundancy.
+
+## Periodicity Injection and the Wold Decomposition
+
+Many real-world time series exhibit strong periodicity. CMoS exploits this with an initialization scheme that mirrors a classical result from time series theory.
+
+**Wold's Decomposition Theorem** (1938) states that any covariance-stationary process $\{X_t\}$ decomposes uniquely into two uncorrelated components:
+
+$$X_t = D_t + S_t$$
+
+where $D_t$ is the deterministic component (perfectly predictable from its own infinite past, including periodic signals and trends) and $S_t$ is the purely stochastic component, an $\text{MA}(\infty)$ process $S_t = \sum_{j=0}^{\infty} \psi_j \epsilon_{t-j}$ driven by white noise innovations.
+
+CMoS's architecture mirrors this decomposition directly. Among the $K$ basis matrices:
+
+- **Matrix $\theta^0$ (initialized)** plays the role of $D_t$. It is pre-filled with periodic peaks: for a period $p$ and chunk size $S$, the entry $\theta^{\text{edit}}_{ij}$ is set to $p/L$ whenever the chunk distance is a multiple of $p/S$, and 0 otherwise. This matrix already encodes that the best predictor for chunk $i$ is the corresponding chunk from previous periods.
+- **Matrices $\theta^1, \ldots, \theta^{K-1}$ (learned from scratch)** play the role of $S_t$. They capture whatever residual temporal structure remains after periodicity is accounted for — short-term momentum, slow trends, cross-day dependencies.
+
+<div style="margin: 2.5em 0; overflow-x: auto;">
+  <svg viewBox="0 0 660 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 660px; display: block; font-family: 'Courier New', monospace;">
+    <text x="20" y="22" fill="#666" font-size="10" letter-spacing="1.5">WOLD DECOMPOSITION</text>
+    <text x="400" y="22" fill="#666" font-size="10" letter-spacing="1.5">CMoS ARCHITECTURE</text>
+
+    <rect x="20" y="35" width="108" height="28" fill="transparent" stroke="#555" stroke-width="1" rx="3"/>
+    <text x="74" y="53" fill="#ccc" font-size="10" text-anchor="middle">Xₜ (process)</text>
+
+    <text x="74" y="82" fill="#555" font-size="11" text-anchor="middle">=</text>
+
+    <rect x="20" y="90" width="100" height="28" fill="transparent" stroke="#2d9e5e" stroke-width="1.5" rx="3"/>
+    <text x="70" y="108" fill="#2d9e5e" font-size="9" text-anchor="middle">Dₜ — deterministic</text>
+
+    <text x="128" y="108" fill="#555" font-size="12">+</text>
+
+    <rect x="140" y="90" width="100" height="28" fill="transparent" stroke="#3a7bbf" stroke-width="1.5" rx="3"/>
+    <text x="190" y="108" fill="#3a7bbf" font-size="9" text-anchor="middle">Sₜ — stochastic</text>
+
+    <text x="70" y="138" fill="#555" font-size="8" text-anchor="middle">periodic, predictable</text>
+    <text x="190" y="138" fill="#555" font-size="8" text-anchor="middle">MA(∞) innovations</text>
+
+    <line x1="270" y1="100" x2="330" y2="100" stroke="#444" stroke-width="1" stroke-dasharray="4,3"/>
+    <polygon points="330,96 338,100 330,104" fill="#444"/>
+    <text x="304" y="93" fill="#555" font-size="8" text-anchor="middle">mirrors</text>
+
+    <rect x="340" y="35" width="130" height="28" fill="transparent" stroke="#555" stroke-width="1" rx="3"/>
+    <text x="405" y="53" fill="#ccc" font-size="10" text-anchor="middle">x̂ₜ₊ᵢ (forecast)</text>
+
+    <text x="405" y="82" fill="#555" font-size="11" text-anchor="middle">=</text>
+
+    <rect x="340" y="90" width="120" height="28" fill="transparent" stroke="#2d9e5e" stroke-width="1.5" rx="3"/>
+    <text x="400" y="104" fill="#2d9e5e" font-size="8.5" text-anchor="middle">θ⁰ — initialized</text>
+    <text x="400" y="115" fill="#2d9e5e" font-size="8" text-anchor="middle">with periodic peaks</text>
+
+    <text x="468" y="108" fill="#555" font-size="12">+</text>
+
+    <rect x="478" y="90" width="120" height="28" fill="transparent" stroke="#3a7bbf" stroke-width="1.5" rx="3"/>
+    <text x="538" y="104" fill="#3a7bbf" font-size="8.5" text-anchor="middle">θ¹…θᴷ⁻¹ — learned</text>
+    <text x="538" y="115" fill="#3a7bbf" font-size="8" text-anchor="middle">from scratch</text>
+
+    <text x="400" y="150" fill="#555" font-size="8" text-anchor="middle">captures periodicity</text>
+    <text x="538" y="150" fill="#555" font-size="8" text-anchor="middle">captures residual</text>
+
+    <text x="330" y="185" fill="#555" font-size="8" text-anchor="middle">Wold guarantees the decomposition always exists for covariance-stationary processes</text>
+  </svg>
+</div>
+
+Wold's theorem guarantees that this decomposition is always valid for covariance-stationary processes. By encoding it into the initialization, CMoS gives the optimizer a head start that the paper shows roughly halves convergence time.
+
+There is also a deeper connection worth noting. In the Wold representation, the stochastic component is $S_t = \sum_{j=0}^{\infty} \psi_j \epsilon_{t-j}$. The coefficients $\psi_j$ describe how past innovations influence the present. The learned correlation weights $\theta_{ij}$ serve an analogous role: they encode the temporal impulse response of the system, chunked and truncated to a finite window. This is why the learned matrices are directly interpretable.
+
+## Results: 750 Parameters vs. the Field
+
+CMoS was tested on 7 standard datasets against both heavyweight Transformers and lightweight linear models, across horizons $H \in \{96, 192, 336, 720\}$.
+
+<div style="margin: 2.5em 0; overflow-x: auto;">
+  <table style="border-collapse: collapse; width: 100%; font-family: 'Courier New', monospace; font-size: 0.82em;">
+    <thead>
+      <tr style="border-bottom: 2px solid #333;">
+        <th style="text-align: left; padding: 10px 14px; color: #888; font-weight: 600;">Model</th>
+        <th style="text-align: right; padding: 10px 14px; color: #888; font-weight: 600;">Electricity</th>
+        <th style="text-align: right; padding: 10px 14px; color: #888; font-weight: 600;">Traffic</th>
+        <th style="text-align: right; padding: 10px 14px; color: #888; font-weight: 600;">Weather</th>
+        <th style="text-align: right; padding: 10px 14px; color: #888; font-weight: 600;">ETTh1</th>
+        <th style="text-align: right; padding: 10px 14px; color: #888; font-weight: 600;">ETTh2</th>
+        <th style="text-align: right; padding: 10px 14px; color: #888; font-weight: 600;">Params</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom: 1px solid #1e1e1e;">
+        <td style="padding: 9px 14px;">PatchTST</td>
+        <td style="padding: 9px 14px; text-align: right;">0.171</td>
+        <td style="padding: 9px 14px; text-align: right;">0.397</td>
+        <td style="padding: 9px 14px; text-align: right;">0.224</td>
+        <td style="padding: 9px 14px; text-align: right;">0.429</td>
+        <td style="padding: 9px 14px; text-align: right;">0.351</td>
+        <td style="padding: 9px 14px; text-align: right; color: #666;">~50 M</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #1e1e1e;">
+        <td style="padding: 9px 14px;">iTransformer</td>
+        <td style="padding: 9px 14px; text-align: right;">0.163</td>
+        <td style="padding: 9px 14px; text-align: right;">0.397</td>
+        <td style="padding: 9px 14px; text-align: right;">0.232</td>
+        <td style="padding: 9px 14px; text-align: right;">0.439</td>
+        <td style="padding: 9px 14px; text-align: right;">0.370</td>
+        <td style="padding: 9px 14px; text-align: right; color: #666;">~5 M</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #1e1e1e;">
+        <td style="padding: 9px 14px;">DLinear</td>
+        <td style="padding: 9px 14px; text-align: right;">0.167</td>
+        <td style="padding: 9px 14px; text-align: right;">0.428</td>
+        <td style="padding: 9px 14px; text-align: right;">0.242</td>
+        <td style="padding: 9px 14px; text-align: right;">0.430</td>
+        <td style="padding: 9px 14px; text-align: right;">0.470</td>
+        <td style="padding: 9px 14px; text-align: right; color: #666;">~75 K</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #1e1e1e;">
+        <td style="padding: 9px 14px;">SparseTSF</td>
+        <td style="padding: 9px 14px; text-align: right;">0.165</td>
+        <td style="padding: 9px 14px; text-align: right;">0.412</td>
+        <td style="padding: 9px 14px; text-align: right;">0.240</td>
+        <td style="padding: 9px 14px; text-align: right;">0.406</td>
+        <td style="padding: 9px 14px; text-align: right;">0.344</td>
+        <td style="padding: 9px 14px; text-align: right; color: #666;">~10 K</td>
+      </tr>
+      <tr>
+        <td style="padding: 9px 14px; font-weight: bold;">CMoS</td>
+        <td style="padding: 9px 14px; text-align: right; font-weight: bold;">0.158</td>
+        <td style="padding: 9px 14px; text-align: right; font-weight: bold;">0.396</td>
+        <td style="padding: 9px 14px; text-align: right; font-weight: bold;">0.220</td>
+        <td style="padding: 9px 14px; text-align: right; font-weight: bold;">0.403</td>
+        <td style="padding: 9px 14px; text-align: right; font-weight: bold;">0.331</td>
+        <td style="padding: 9px 14px; text-align: right; font-weight: bold;">~750</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size: 0.75em; color: #666; margin-top: 0.6em;">MSE averaged over H ∈ {96, 192, 336, 720}. Bold = best in column. Parameter counts approximate for ETTh1.</p>
+</div>
+
+Three observations stand out. First, CMoS dominates high-channel datasets. On Electricity (321 channels), Traffic (862 channels), and Weather (21 channels), it achieves the best MSE across the board — exactly the setting where Correlation Mixing matters most. Second, the parameter gap is striking: CMoS uses ~750 parameters while PatchTST uses ~50 million, a factor of 65,000×, and CMoS still wins on ETTh1 MSE (0.403 vs. 0.429). Third, inference efficiency follows directly. On Electricity, CMoS uses 2.96G FLOPs and 252MB GPU memory; PatchTST uses 1,196G FLOPs and 22GB, representing roughly a 400× compute reduction and an 87× memory reduction.
+
+## Interpretability: Reading the Model's Mind
+
+This is the most underrated aspect of CMoS. Because the correlation matrices directly encode "how much does past chunk $j$ influence future chunk $i$", you can look at the learned weights and understand what the model learned.
+
+The authors visualize the four basis matrices learned on the Weather dataset (chunk size = 4, sampled every 10 minutes, so 36 chunks = 1 day). The four matrices each specialize: one captures diffuse residual corrections across all lags, one shows a sharp stripe at lag 36 (daily periodicity), one concentrates weight exclusively on the most recent chunks (short-term momentum), and one reflects multi-day periodic dependencies. When channels are then assigned mixing weights, a slow-drifting channel with no clear periodicity loads almost entirely on the short-term matrix; a strongly periodic channel splits its weight across the daily and multi-day matrices.
+
+This level of interpretability is rare in deep learning. You do not just get a prediction — you get a decomposition of why the model is making that prediction. For practitioners deploying forecasting models in energy, finance, or operations, the ability to inspect and sanity-check these matrices before trusting them in production is genuinely valuable.
+
+## Takeaway
+
+CMoS is a reminder that the best inductive bias is the one that matches the structure of your problem. Time series data in finance, energy, and operations is often governed by a few simple temporal patterns: periodicity, short-term momentum, long-term trends. CMoS encodes exactly this structure. Chunking provides noise robustness through weight averaging (Theorem 3.2). Correlation Mixing provides a low-rank basis for temporal structures, in the same way PCA provides a low-rank basis for covariance matrices. Periodicity Injection provides a head start on the deterministic component, mirroring Wold's decomposition.
+
+The result is state-of-the-art forecasting with 750 parameters. The next time you reach for a Transformer to forecast a time series, it is worth asking whether you genuinely need 50 million parameters to predict electricity demand, or whether the signal lives in a structure so simple that a few hundred weights can capture it entirely.
+
+## Frequently Asked Questions
+
+**What is CMoS and why does it matter?** CMoS is a time series forecasting model (ICML 2025) that achieves state-of-the-art accuracy on standard benchmarks with roughly 750 parameters, compared to tens of millions for Transformer-based models. It matters because real-world time series datasets are small, making overfitting the primary challenge, and CMoS's inductive biases are matched to that regime.
+
+**How does chunk-wise modeling reduce overfitting?** By grouping time steps into chunks and modeling chunk-to-chunk dependencies, CMoS reduces the weight matrix size by a factor of $S^2$. Theorem 3.2 proves that the resulting weight averaging also strictly reduces noise sensitivity, providing a formal analogue of Ridge regularization.
+
+**What is Correlation Mixing?** Correlation Mixing learns $K$ shared basis correlation matrices (typically $K = 4$) and assigns each channel a learned softmax weighting over these matrices. This is analogous to PCA: rather than modeling every channel independently ($O(N)$ parameter sets) or all channels identically (one shared structure), it discovers a low-dimensional basis for the space of temporal dependencies.
+
+**Why is Periodicity Injection useful?** Initializing one basis matrix with periodic peaks gives the optimizer a head start on the deterministic component of the signal, in the sense of Wold's decomposition. In practice, the paper reports that this initialization roughly halves convergence time.
+
+**Can CMoS run on limited hardware?** Yes. On the Electricity dataset, CMoS uses 2.96G FLOPs and 252MB of GPU memory at inference time, compared to over 1,000G FLOPs and 22GB for PatchTST. It can realistically run on edge hardware.
+
+---
+
+**Paper:** [CMoS: Rethinking Time Series Prediction Through the Lens of Chunk-wise Spatial Correlations](https://arxiv.org/abs/2505.19090) — Haotian Si, Changhua Pei, Jianhui Li, Dan Pei, Gaogang Xie. ICML 2025.
+
+**Code:** [github.com/CSTCloudOps/CMoS](https://github.com/CSTCloudOps/CMoS)
