@@ -4,7 +4,7 @@ title: Leveraging Options Data for Stock Sentiment Analysis
 categories: [Quantitative Finance, Algo Trading]
 excerpt: Learn how Open Interest, Put/Call Ratio, and the Sizzle Index can enhance your understanding of market sentiment and stock trends
 hidden: False
-image: /thumbnails/AboutMarketSentiment.jpeg
+image: /thumbnails/AboutMarketSentiment-v3.jpg
 ---
 
 ## Introduction 

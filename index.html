@@ -2,188 +2,102 @@
 layout: default
 ---
 
-<style>
-  }
-  body {
-    background: linear-gradient(
-      180deg,
-      #f1f5f9 0%,
-      #e2e8f0 100%
-    );
-  }
-  /* CARD */
-  .post {
-    display: flex;
-    justify-content: space-between;
-    gap: 25px;
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 25px;
-    margin-bottom: 35px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  .post:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.09);
-  }
-  
-  /* LEFT SIDE (TEXT) */
-  .content {
-    flex: 2;
-    text-align: left;
-  }
-  
-  h1 {
-    font-size: 1.35rem;
-    line-height: 1.3;
-    margin-bottom: 6px;
-  }
-  
-  .post_date {
-    font-size: 0.8rem;
-    color: #666;
-    margin-bottom: 12px;
-  }
-  
-  .entry {
-    font-size: 0.9rem;
-    line-height: 1.55;
-    color: #444;
-    margin-bottom: 12px;
-    text-align: center;
-  }
-  
-  .read-more {
-    display: block;
-    text-align: center;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-decoration: none;
-    color: #1e40af;
-  }
+{% assign visible_posts = site.posts | where_exp: "post", "post.hidden != true" %}
+{% assign featured_post = visible_posts | first %}
 
-  .read-more:hover {
-    text-decoration: underline;
-  }
-  
-  /* RIGHT SIDE (IMAGE) */
-  .post-image {
-    flex: 0 0 240px;      /* fixed width for desktop */
-    width: 240px;
-    height: 240px;         /* ⬅️ force square */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border-radius: 10px;
-  }
-  
-  .post-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+<h1 class="visually-hidden">{{ site.name }}</h1>
 
-  /* MOBILE */
-@media (max-width: 768px) {
-    .post {
-      flex-direction: column;
-      padding: 18px;
-      gap: 16px;
-      align-items: center;
-    }
-  
-    .post-image {
-      width: 80%;
-      aspect-ratio: 1 / 1;   /* keeps square */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto;
-      overflow: hidden;
-    }
-  
-    .post-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center; /* ensures vertical + horizontal centering */
-    }
-    .content {
-      text-align: center; /* center description and read more */
-    }
-  
-    h1 {
-      font-size: 1.15rem;
-      line-height: 1.35;
-    }
-  
-    .post_date {
-      font-size: 0.75rem;
-      margin-bottom: 8px;
-    }
-  
-    .entry {
-      font-size: 0.85rem;
-      line-height: 1.5;
-    }
-  
-    .read-more {
-      font-size: 0.85rem;
-    }
-  }  
-  /* Pagination */
-  .pagination a,
-  .pagination span {
-    font-size: 0.85rem;
-  }
-</style>
+{% if paginator.page == 1 %}
+<section class="home-section" aria-labelledby="topics-heading">
+  <p class="home-section__eyebrow">Explore</p>
+  <h2 class="home-section__title" id="topics-heading">Browse by topic</h2>
+  <div class="topic-shortcuts">
+    <a class="topic-shortcut" href="{{ '/categories/' | relative_url }}#quantitative-finance"><strong>Quantitative Finance</strong><span>Models, markets and portfolio theory</span></a>
+    <a class="topic-shortcut" href="{{ '/categories/' | relative_url }}#statistics"><strong>Statistics</strong><span>Probability, time series and inference</span></a>
+    <a class="topic-shortcut" href="{{ '/categories/' | relative_url }}#research"><strong>Research</strong><span>Deep learning and current work</span></a>
+    <a class="topic-shortcut" href="{{ '/categories/' | relative_url }}#python"><strong>Python</strong><span>Implementations and practical guides</span></a>
+  </div>
+</section>
+{% endif %}
 
-<div class="posts">
-  {% for post in paginator.posts %}
-    {% unless post.hidden %}
-    <a href="{{ site.baseurl }}{{ post.url }}" class="post-link">
-      <article class="post">
-        <div class="content">
-          <h1>{{ post.title }}</h1>
-          <p class="post_date">{{ post.date | date: "%B %e, %Y" }}</p>
-          <div class="entry">{{ post.excerpt }}</div>
-          <span class="read-more">Read More</span>
-        </div>
-        {% if post.image %}
-        <div class="post-image">
-          <img src="{{ site.baseurl }}{{ post.image }}" alt="{{ post.title | escape }}">
-        </div>
-        {% endif %}
-      </article>
-    </a>
-    {% endunless %}
-  {% endfor %}
-
-  <!-- pagination -->
-  {% if paginator.total_pages > 1 %}
-  <div class="pagination">
-    {% if paginator.previous_page %}
-      <a class="paginator-button" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a>
-    {% else %}
-      <span class="paginator-button">&laquo; Prev</span>
+{% if paginator.page == 1 and featured_post %}
+<section class="home-section" aria-labelledby="featured-heading">
+  <p class="home-section__eyebrow">Featured article</p>
+  <a class="featured-post" href="{{ featured_post.url | relative_url }}">
+    <div class="featured-post__content">
+      <div class="featured-post__meta">
+        {% if featured_post.categories.first %}<span class="article-kicker__topic">{{ featured_post.categories.first }}</span><span aria-hidden="true">&middot;</span>{% endif %}
+        <time datetime="{{ featured_post.date | date_to_xmlschema }}">{{ featured_post.date | date: "%B %e, %Y" }}</time>
+        {% assign featured_words = featured_post.content | number_of_words %}
+        {% assign featured_minutes = featured_words | plus: 199 | divided_by: 200 %}
+        <span aria-hidden="true">&middot;</span><span>{{ featured_minutes }} min read</span>
+      </div>
+      <h2 id="featured-heading">{{ featured_post.title }}</h2>
+      <div class="featured-post__excerpt">{{ featured_post.excerpt | strip_html | truncatewords: 24 }}</div>
+      <span class="featured-post__action">Read the article <span aria-hidden="true">&rarr;</span></span>
+    </div>
+    {% if featured_post.image %}
+    <div class="featured-post__image">
+      <img src="{{ featured_post.image | relative_url }}" alt="" width="720" height="420" decoding="async">
+    </div>
     {% endif %}
-    {% for page in (1..paginator.total_pages) %}
-      {% if page == paginator.page %}
-        <span class="webjeda paginator-button">{{ page }}</span>
-      {% elsif page == 1 %}
-        <a class="paginator-button" href="{{ '/' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+  </a>
+</section>
+{% endif %}
+
+<section class="home-section" aria-labelledby="articles-heading">
+  <p class="home-section__eyebrow">{% if paginator.page == 1 %}Latest{% else %}Archive{% endif %}</p>
+  <h2 class="home-section__title" id="articles-heading">{% if paginator.page == 1 %}Recent articles{% else %}Articles &mdash; page {{ paginator.page }}{% endif %}</h2>
+  <div class="article-grid">
+    {% assign page_posts = paginator.posts | where_exp: "post", "post.hidden != true" %}
+    {% for post in page_posts %}
+      {% unless paginator.page == 1 and post.url == featured_post.url %}
+      {% assign words = post.content | number_of_words %}
+      {% assign minutes = words | plus: 199 | divided_by: 200 %}
+      <article class="article-card">
+        <a href="{{ post.url | relative_url }}">
+          {% if post.image %}
+          <div class="article-card__image">
+            <img src="{{ post.image | relative_url }}" alt="" width="640" height="400" loading="lazy" decoding="async">
+          </div>
+          {% endif %}
+          <div class="article-card__body">
+            <div class="article-card__meta">
+              {% if post.categories.first %}<span class="article-kicker__topic">{{ post.categories.first }}</span><span aria-hidden="true">&middot;</span>{% endif %}
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %e, %Y" }}</time>
+              <span aria-hidden="true">&middot;</span><span>{{ minutes }} min</span>
+            </div>
+            <h3>{{ post.title }}</h3>
+            <div class="article-card__excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</div>
+            <span class="article-card__read">Read article <span aria-hidden="true">&rarr;</span></span>
+          </div>
+        </a>
+      </article>
+      {% endunless %}
+    {% endfor %}
+  </div>
+
+  {% if paginator.total_pages > 1 %}
+  <nav class="pagination" aria-label="Article pages">
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path | relative_url }}" aria-label="Previous page">&larr; Prev</a>
+    {% else %}
+      <span aria-disabled="true">&larr; Prev</span>
+    {% endif %}
+    {% for page_number in (1..paginator.total_pages) %}
+      {% if page_number == paginator.page %}
+        <span aria-current="page">{{ page_number }}</span>
+      {% elsif page_number == 1 %}
+        <a href="{{ '/' | relative_url }}" aria-label="Page 1">1</a>
       {% else %}
-        <a class="paginator-button" href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+        <a href="{{ site.paginate_path | replace: ':num', page_number | relative_url }}" aria-label="Page {{ page_number }}">{{ page_number }}</a>
       {% endif %}
     {% endfor %}
     {% if paginator.next_page %}
-      <a class="paginator-button" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a>
+      <a href="{{ paginator.next_page_path | relative_url }}" aria-label="Next page">Next &rarr;</a>
     {% else %}
-      <span class="paginator-button">Next &raquo;</span>
+      <span aria-disabled="true">Next &rarr;</span>
     {% endif %}
-  </div>
+  </nav>
   {% endif %}
-</div>
+</section>

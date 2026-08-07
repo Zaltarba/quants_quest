@@ -3,7 +3,7 @@ layout: post
 title: Bitcoin Volatility Estimation with EWMA in Python
 categories: [Statistics, Quantitative Finance, Algo Trading, Python]
 excerpt: Learn how to estimate Bitcoin's realized volatility using the EWMA method in Python with Binance data. 
-image: /thumbnails/BitcoinVolatility1.jpeg
+image: /thumbnails/BitcoinVolatility1-v3.jpg
 hidden: false
 tags: [bitcoin, crypto, ewma, volatility, risk management, forecasting, binance, python, quant finance]
 ---
@@ -11,7 +11,7 @@ tags: [bitcoin, crypto, ewma, volatility, risk management, forecasting, binance,
 
 ## Introduction
 
-In our [previous post](quants.quest/DataBaseCreation/), we explored how to fetch and store Binance candlestick data using HDF5, laying the groundwork for efficient data management in cryptocurrency research. Efficient data handling is crucial when dealing with large datasets, especially in the fast-paced world of crypto trading.
+In our [previous post](/DataBaseCreation/), we explored how to fetch and store Binance candlestick data using HDF5, laying the groundwork for efficient data management in cryptocurrency research. Efficient data handling is crucial when dealing with large datasets, especially in the fast-paced world of crypto trading.
 
 Now, we're taking the next step in our journey by delving into the analysis of this data. This is the first part of a three-part series where we'll dive deep into estimating Bitcoin's volatility using different methods. 
 
@@ -40,7 +40,7 @@ In essence, studying realized volatility is **not just an academic** exercise—
 
 ## Preparing Binance Bitcoin Data for EWMA in Python
 
-Before we can estimate volatility, we need to prepare our data. The database we will use is the one we created in [this post](quants.quest/DataBaseCreation/).
+Before we can estimate volatility, we need to prepare our data. The database we will use is the one we created in [this post](/DataBaseCreation/).
 
 ### Loading Data from HDF5
 
@@ -214,7 +214,7 @@ Due to these limitations, the EWMA method is suitable only for **historical anal
 
 In this post, we've introduced the concept of volatility and its importance in financial markets, particularly for Bitcoin. We've shown how to estimate volatility using the EWMA method, which provides a responsive and practical approach for traders and analysts.
 
-This is just the beginning. In the [next posts](quants.quest/BitcoinVolatility-2/) of this series, we'll explore more sophisticated methods like GARCH models for volatility estimation.
+This is just the beginning. In the [next posts](/BitcoinVolatility-2/) of this series, we'll explore more sophisticated methods like GARCH models for volatility estimation.
 
 Stay tuned for deeper insights into the fascinating world of financial volatility analysis!
 

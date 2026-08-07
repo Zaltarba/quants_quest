@@ -2,41 +2,51 @@
 layout: page
 title: Search
 permalink: /search/
+robots: "noindex, follow"
+sitemap: false
 ---
 
-<style>
-    #results-container a,
-    #results-container a:visited {
-        color: #5dade2; /* light blue */
-        text-decoration: none;
-    }
-    #results-container a:hover {
-        color: #3498db; /* slightly darker blue on hover */
-        text-decoration: underline;
-    }
-    #results-container a h1,
-    #results-container a:visited h1 {
-        color: #5dade2; /* light blue */
-    }
-    
-    #results-container a:hover h1 {
-        color: #3498db; /* darker blue on hover */
-    }
+<div class="search-shell">
+  <p class="search-lead">Find an article by title, topic, or keyword.</p>
+  <label class="visually-hidden" for="search-input">Search articles</label>
+  <input type="search" id="search-input" placeholder="Search articles..." autocomplete="off" spellcheck="false">
 
-</style>
+  <div class="search-suggestions" id="search-suggestions">
+    <h2>Browse popular topics</h2>
+    <div class="search-topic-links">
+      <a href="{{ '/categories/' | relative_url }}#quantitative-finance">Quantitative Finance</a>
+      <a href="{{ '/categories/' | relative_url }}#statistics">Statistics</a>
+      <a href="{{ '/categories/' | relative_url }}#research">Research</a>
+      <a href="{{ '/categories/' | relative_url }}#python">Python</a>
+    </div>
+    <h2>Recent articles</h2>
+    <ul>
+      {% assign visible_posts = site.posts | where_exp: "post", "post.hidden != true" %}
+      {% for post in visible_posts limit: 4 %}
+      <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
 
-<div id="search-container">
-    <input type="text" id="search-input" placeholder="Search through the blog posts...">
-    <ul id="results-container"></ul>
+  <ul id="results-container" aria-live="polite"></ul>
 </div>
 
-<script src="{{ site.baseurl }}/assets/simple-jekyll-search.min.js" type="text/javascript"></script>
-
+<script src="{{ '/assets/simple-jekyll-search.min.js' | relative_url }}"></script>
 <script>
+  (function () {
+    var input = document.getElementById('search-input');
+    var suggestions = document.getElementById('search-suggestions');
+
     SimpleJekyllSearch({
-    searchInput: document.getElementById('search-input'),
-    resultsContainer: document.getElementById('results-container'),
-    searchResultTemplate: '<div style="text-align: left !important;"><a href="{url}"><h1 style="text-align:left !important;">{title}</h1></a><span style="text-align:left !important;">{date}</span></div>',
-    json: '{{ site.baseurl }}/search.json'
+      searchInput: input,
+      resultsContainer: document.getElementById('results-container'),
+      json: '{{ '/search.json' | relative_url }}',
+      noResultsText: '<li class="search-result"><div style="padding:18px">No matching articles found.</div></li>',
+      searchResultTemplate: '<li class="search-result"><a href="{url}"><img src="{image}" alt="" width="96" height="72" loading="lazy"><div><span class="search-result__meta">{category} &middot; {date}</span><h2>{title}</h2><p>{excerpt}</p></div></a></li>'
     });
+
+    input.addEventListener('input', function () {
+      suggestions.hidden = input.value.trim().length > 0;
+    });
+  }());
 </script>

@@ -202,7 +202,7 @@ plt.show()
 
 ## Conclusion  {#Conclusion}
 
-Random walks and martingales may seem similar at first glance, but the distinction is subtle and important. Random walks describe how prices move step by step, while martingales capture a broader property of **fair game** conditional expectations. Understanding both is fundamental to quantitative finance, stochastic modeling, and financial mathematics. To see a pratical use of random walk models and martingales properties to forecast volatility, check this [previous post](quants.quest/BitcoinVolatility-2/) ! 
+Random walks and martingales may seem similar at first glance, but the distinction is subtle and important. Random walks describe how prices move step by step, while martingales capture a broader property of **fair game** conditional expectations. Understanding both is fundamental to quantitative finance, stochastic modeling, and financial mathematics. To see a pratical use of random walk models and martingales properties to forecast volatility, check this [previous post](/BitcoinVolatility-2/) !
 
 ## Further Reading  {#FurtherReading}
 

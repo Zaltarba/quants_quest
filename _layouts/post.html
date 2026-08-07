@@ -2,35 +2,105 @@
 layout: default
 ---
 
-<article class="post detailed">
-  <h1>{{ page.title }}</h1>
-  <div>
-    <p class="author_title">{{site.author}}  ·  {{ page.date | date: "%B %e, %Y" }}</p>
-    {% if page.last_modified_at %}
-    <p class="author_title" datetime="{{ page.last_modified_at | date_to_xmlschema }}">(Updated: {{ page.last_modified_at | date: "%b %-d, %Y" }})</p>
-    {% endif %}
-    <div class="post-tags">
-      {% if post %}
-        {% assign categories = post.categories %}
-      {% else %}
-        {% assign categories = page.categories %}
+{% assign words = content | number_of_words %}
+{% assign reading_minutes = words | plus: 199 | divided_by: 200 %}
+{% assign visible_posts = site.posts | where_exp: "post", "post.hidden != true" %}
+{% assign current_index = nil %}
+{% for candidate in visible_posts %}
+  {% if candidate.url == page.url %}{% assign current_index = forloop.index0 %}{% endif %}
+{% endfor %}
+{% if current_index != nil %}
+  {% assign newer_index = current_index | minus: 1 %}
+  {% assign older_index = current_index | plus: 1 %}
+  {% for candidate in visible_posts %}
+    {% if forloop.index0 == newer_index %}{% assign newer_post = candidate %}{% endif %}
+    {% if forloop.index0 == older_index %}{% assign older_post = candidate %}{% endif %}
+  {% endfor %}
+{% endif %}
+
+<div class="post-shell">
+  <article class="post detailed">
+    <header class="post-header">
+      <nav class="post-header__breadcrumbs" aria-label="Breadcrumb">
+        <a href="{{ '/' | relative_url }}">Articles</a>
+        <span aria-hidden="true"> / </span>
+        {% if page.categories.first %}<a href="{{ '/categories/' | relative_url }}#{{ page.categories.first | slugify }}">{{ page.categories.first }}</a><span aria-hidden="true"> / </span>{% endif %}
+        <span aria-current="page">{{ page.title }}</span>
+      </nav>
+
+      <h1>{{ page.title }}</h1>
+      <div class="post-header__meta">
+        <p class="author_title">{{ site.author }}</p>
+        <span aria-hidden="true">&middot;</span>
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %e, %Y" }}</time>
+        <span aria-hidden="true">&middot;</span>
+        <span>{{ reading_minutes }} min read</span>
+        {% if page.last_modified_at %}
+        <span aria-hidden="true">&middot;</span>
+        <span>Updated <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: "%b %-d, %Y" }}</time></span>
+        {% endif %}
+      </div>
+
+      {% if page.categories %}
+      <div class="post-tags" aria-label="Topics">
+        {% for category in page.categories %}
+        <a href="{{ '/categories/' | relative_url }}#{{ category | slugify }}">{{ category }}</a>
+        {% endfor %}
+      </div>
       {% endif %}
-      {% for category in categories %}
-        <a href="{{site.baseurl}}/categories/#{{category|slugize}}">{{category}}</a>
-        {% unless forloop.last %}&nbsp;{% endunless %}
-      {% endfor %}
+    </header>
+
+    <details class="article-toc-mobile">
+      <summary>On this page</summary>
+      <nav aria-label="Article contents"></nav>
+    </details>
+
+    <div class="entry article-content">
+      {{ content }}
     </div>
-  </div>
-    
-  <!--<div class="date">
-    Written on {{ page.date | date: "%B %e, %Y" }}
-  </div>-->
-  
-  <div class="entry">
-    {{ content }}
-  </div>
-<link rel="stylesheet" href="{{ '/assets/posts_custom.css' | relative_url }}">
-</article>
+
+    {% if older_post or newer_post %}
+    <nav class="post-navigation" aria-label="Adjacent articles">
+      {% if older_post %}
+      <a href="{{ older_post.url | relative_url }}">
+        <span>Previous article</span>
+        {{ older_post.title }}
+      </a>
+      {% else %}<span></span>{% endif %}
+      {% if newer_post %}
+      <a class="post-navigation__next" href="{{ newer_post.url | relative_url }}">
+        <span>Next article</span>
+        {{ newer_post.title }}
+      </a>
+      {% endif %}
+    </nav>
+    {% endif %}
+
+    {% assign primary_category = page.categories.first %}
+    {% assign related_count = 0 %}
+    {% if primary_category %}
+    <section class="related-posts" data-related-posts>
+      <h2>Related reading</h2>
+      <div class="related-posts__grid">
+        {% for candidate in visible_posts %}
+          {% if candidate.url != page.url and candidate.categories contains primary_category and related_count < 3 %}
+          <a class="related-post" href="{{ candidate.url | relative_url }}">
+            <span>{{ candidate.date | date: "%b %Y" }}</span>
+            {{ candidate.title }}
+          </a>
+          {% assign related_count = related_count | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+  </article>
+
+  <aside class="article-toc" aria-label="Article contents">
+    <h2>On this page</h2>
+    <nav></nav>
+  </aside>
+</div>
 
 <div id="comments">
   <script src="https://utteranc.es/client.js"
@@ -42,3 +112,99 @@ layout: default
   </script>
 </div>
 
+<link rel="stylesheet" href="{{ '/assets/posts_custom.css' | relative_url }}">
+
+<script>
+  (function () {
+    var content = document.querySelector('.article-content');
+    var desktopToc = document.querySelector('.article-toc');
+    var mobileToc = document.querySelector('.article-toc-mobile');
+    if (!content) return;
+
+    var headings = Array.prototype.slice.call(content.querySelectorAll('h2'));
+    var manualHeading = headings.find(function (heading) {
+      return /^table of content/i.test(heading.textContent.trim());
+    });
+    var links = [];
+
+    if (manualHeading) {
+      var manualList = manualHeading.nextElementSibling;
+      if (manualList && /^(OL|UL)$/.test(manualList.tagName)) {
+        links = Array.prototype.slice.call(manualList.querySelectorAll('a[href^="#"]')).map(function (link) {
+          return { href: link.getAttribute('href'), label: link.textContent.trim() };
+        });
+        manualHeading.classList.add('toc-source-hidden');
+        manualList.classList.add('toc-source-hidden');
+      }
+    }
+
+    if (!links.length) {
+      links = headings.filter(function (heading) { return heading !== manualHeading; }).map(function (heading, index) {
+        if (!heading.id) {
+          var base = heading.textContent.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'section';
+          var id = base;
+          var suffix = 2;
+          while (document.getElementById(id)) id = base + '-' + suffix++;
+          heading.id = id;
+        }
+        return { href: '#' + heading.id, label: heading.textContent.trim() };
+      });
+    }
+
+    function fillToc(nav) {
+      if (!nav) return;
+      links.forEach(function (item) {
+        var link = document.createElement('a');
+        link.href = item.href;
+        link.textContent = item.label;
+        nav.appendChild(link);
+      });
+    }
+
+    if (links.length) {
+      fillToc(desktopToc && desktopToc.querySelector('nav'));
+      fillToc(mobileToc && mobileToc.querySelector('nav'));
+      if (mobileToc) mobileToc.classList.add('has-links');
+    } else {
+      if (desktopToc) desktopToc.hidden = true;
+      if (mobileToc) mobileToc.hidden = true;
+    }
+
+    if ('IntersectionObserver' in window && links.length) {
+      var tocLinks = Array.prototype.slice.call(document.querySelectorAll('.article-toc a, .article-toc-mobile a'));
+      var observedHeadings = links.map(function (item) {
+        try { return document.querySelector(item.href); } catch (error) { return null; }
+      }).filter(Boolean);
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          tocLinks.forEach(function (link) {
+            link.classList.toggle('is-active', link.hash === '#' + entry.target.id);
+          });
+        });
+      }, { rootMargin: '-18% 0px -70% 0px' });
+      observedHeadings.forEach(function (heading) { observer.observe(heading); });
+    }
+
+    Array.prototype.slice.call(content.querySelectorAll('.highlight, pre')).forEach(function (block) {
+      if (block.closest('.highlight') && block.tagName === 'PRE') return;
+      var pre = block.tagName === 'PRE' ? block : block.querySelector('pre');
+      if (!pre || block.querySelector(':scope > .code-copy')) return;
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'code-copy';
+      button.textContent = 'Copy';
+      button.setAttribute('aria-label', 'Copy code to clipboard');
+      button.addEventListener('click', function () {
+        navigator.clipboard.writeText(pre.textContent).then(function () {
+          button.textContent = 'Copied';
+          window.setTimeout(function () { button.textContent = 'Copy'; }, 1600);
+        });
+      });
+      block.appendChild(button);
+    });
+
+    var related = document.querySelector('[data-related-posts]');
+    if (related && !related.querySelector('.related-post')) related.hidden = true;
+  }());
+</script>

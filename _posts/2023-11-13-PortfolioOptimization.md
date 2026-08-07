@@ -4,9 +4,11 @@ title: About Portfolio Optimization
 categories: [Quantitative Finance]
 excerpt: Let's talk about modern Portfolio Optimization !
 hidden: true
+robots: "noindex, follow"
+sitemap: false
 ---
 
-# Portfolio Optimization: Balancing Risk and Return
+## Portfolio Optimization: Balancing Risk and Return
 
 ## Introduction
 Welcome to our comprehensive guide on portfolio optimization, a vital concept for anyone involved in the world of investing. Whether you're just starting as an investor or you're a seasoned financial professional, the ability to balance risk and return is crucial for financial success. This post aims to demystify the complex concepts of portfolio optimization, provide historical context, and delve into its mathematical foundations. Join us as we explore how these principles can guide smarter investment decisions.

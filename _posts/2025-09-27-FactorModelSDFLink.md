@@ -144,7 +144,7 @@ $$
 \mathbb{E}_t \left[ m_{t+1} \, r_{t+1} \right] = 0
 $$
 
-Intuitively, this states that **all assets are “fairly priced”** given the SDF. The SDF is closely related to risk-neutral probabilities and can be thought of as a weighting factor that adjusts future payoffs to their present value while accounting for risk preferences. Go check [this previous post](quants.quest/RandomWalkvsMartingale/) if you want info on that. 
+Intuitively, this states that **all assets are “fairly priced”** given the SDF. The SDF is closely related to risk-neutral probabilities and can be thought of as a weighting factor that adjusts future payoffs to their present value while accounting for risk preferences. Go check [this previous post](/RandomWalkvsMartingale/) if you want info on that.
 
 ### The SDF in Practice
 
@@ -157,7 +157,7 @@ In theory, if we knew the distribution of $m_{t+1}$, pricing would be straightfo
     style="max-height: 350px; width: auto; max-width: 100%;">
 </div>
 
-In practice, however, finance has favored **simpler approximations**. Factor models, estimated via OLS regressions, can be interpreted as **linear projections of the SDF onto observed returns**. This is why factor models—CAPM, Fama–French, and beyond—capture so much pricing information: they approximate the true, unobservable stochastic discount factor. To known more about the Stochastic Discount Factor and what it's implies in terms of risk neutral mesures and martingales, go check [this previous post](quants.quest/RandomWalkvsMartingale/)
+In practice, however, finance has favored **simpler approximations**. Factor models, estimated via OLS regressions, can be interpreted as **linear projections of the SDF onto observed returns**. This is why factor models—CAPM, Fama–French, and beyond—capture so much pricing information: they approximate the true, unobservable stochastic discount factor. To known more about the Stochastic Discount Factor and what it's implies in terms of risk neutral mesures and martingales, go check [this previous post](/RandomWalkvsMartingale/)
 
 ## Factor Models as SDFs in Disguise {#FactorModelsAreSDF}
 

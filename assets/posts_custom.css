@@ -1,5 +1,5 @@
-/* Modernized details box */
-details {
+/* Expandable explanatory boxes used inside article content. */
+.article-content details {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 12px 16px;
@@ -9,53 +9,47 @@ details {
   transition: box-shadow 0.3s, transform 0.2s;
 }
 
-details:hover {
+.article-content details:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transform: translateY(-1px);
 }
 
-/* Summary styling */
-summary {
-  font-weight: 600;
-  cursor: pointer;
-  list-style: none; /* remove default marker */
+.article-content summary {
   position: relative;
   padding-left: 25px;
-  font-size: 1.05rem;
   color: #333;
+  font-size: 1.05rem;
+  font-weight: 600;
+  list-style: none;
+  cursor: pointer;
   user-select: none;
   transition: color 0.3s;
 }
 
-summary:hover {
-  color: #0748AB; /* subtle highlight on hover */
+.article-content summary:hover {
+  color: #0748ab;
 }
 
-/* Arrow indicator */
-summary::before {
-  content: "▶"; /* arrow symbol */
+.article-content summary::before {
+  content: "\25B6";
   position: absolute;
   left: 0;
   top: 50%;
+  color: #0748ab;
+  font-size: 0.85em;
   transform: translateY(-50%) rotate(0deg);
   transition: transform 0.3s, color 0.3s;
-  color: #0748AB;
-  font-size: 0.85em;
 }
 
-/* Rotate arrow when open */
-details[open] summary::before {
+.article-content details[open] summary::before {
+  color: #0748ab;
   transform: translateY(-50%) rotate(90deg);
-  color: #0748AB;
 }
 
-/* Paragraph styling inside details */
-details p {
+.article-content details p {
   margin-top: 12px;
-  line-height: 1.7;
-  font-size: 0.95rem;
   color: #555;
+  font-size: 0.95rem;
+  line-height: 1.7;
   transition: color 0.3s;
 }
-
-

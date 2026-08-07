@@ -5,6 +5,8 @@ categories: [Quantitative Finance, Statistics]
 excerpt: In this post we will make a theorical review of several Hurst exponent estimators from the litterature.
 image: /thumbnails/HurstEstimatorsReview.jpeg
 hidden: true
+robots: "noindex, follow"
+sitemap: false
 ---
 
 ## A reminder on the Hurst exponent 
@@ -40,7 +42,7 @@ Sources :
 - https://towardsdatascience.com/introduction-to-the-hurst-exponent-with-code-in-python-4da0414ca52e
 - https://mahowald.github.io/hurst/
 
-# III RS-based estimator 
+## III RS-based estimator
 
 The exponent based on the R/S method is the historical estimator, introduced by Hurst. This estimator is based on the R/S statistic, also introduced by Hurst. Using this method, a Hurst coefficient can be calculated for any time series. However, in the absence of a model, the coefficient can only be used (with difficulty) to refute the stationary nature of a process. In the case of fBm, the R/S estimator is relevant, though not optimal. It should be noted, however, that the series considered is then the series of increments (which follows an fGm), and not the fBm.  
 Here again, calculation of the Hurst exponent is based on an asymptotic relationship:  
@@ -125,7 +127,7 @@ Sources :
 - https://www.researchgate.net/publication/333852181_Estimation_d'exposants_de_Hurst_dans_un_cadre_stationnaire
 - https://inria.hal.science/inria-00074045
 
-# V Annexe 
+## V Annexe
 
 [Here](https://towardsdatascience.com/introduction-to-the-hurst-exponent-with-code-in-python-4da0414ca52e) is an informal explantion of the hurst exponents.
 

@@ -8,7 +8,7 @@ hidden: False
 tags: [random walk with drift, random walk, random walk with drift vs martingale, difference between random walk and random walk with drift, risk neutral measure in finance, stochastic discount factor tutorial, radon nikodym derivative finance, martingale vs random walk in asset pricing, python simulation random walk with drift]
 ---
 
-As discussed in our previous [blog post on martingales and random walks](quants.quest/RandomWalkvsMartingale/), both concepts are fundamental in financial mathematics and quantitative finance. In financial modelling, however, the most relevant case is the random walk with drift. While it may seem at first that a random walk with drift has little in common with a martingale, the relationship between them is deeper than it appears. In this article, we explore the connection between random walks with drift, martingales, and the [stochastic discount factor](quants.quest/FactorModelSDFLink/), to build a clearer understanding of what they truly are.
+As discussed in our previous [blog post on martingales and random walks](/RandomWalkvsMartingale/), both concepts are fundamental in financial mathematics and quantitative finance. In financial modelling, however, the most relevant case is the random walk with drift. While it may seem at first that a random walk with drift has little in common with a martingale, the relationship between them is deeper than it appears. In this article, we explore the connection between random walks with drift, martingales, and the [stochastic discount factor](/FactorModelSDFLink/), to build a clearer understanding of what they truly are.
 
 ## Table of Contents
 
@@ -138,7 +138,7 @@ $$
 \mathbb{E}_{\mathbb{Q}}[X_t] = \mathbb{E}_{\mathbb{P}}[\Lambda_t X_t].
 $$
 
-Let's give an intuition for what will happend if use it to transform our random walk with a positive drift into a martingale. $\Lambda_t$ will downweight states of the world that are good and upweights those that are bad, effectively neutralizing the drift. A detailed exposition of this concept can be found in [this post](quants.quest/RandomWalkvsMartingale/), which connects the Radon–Nikodym transformation with random walk intuition. 
+Let's give an intuition for what will happend if use it to transform our random walk with a positive drift into a martingale. $\Lambda_t$ will downweight states of the world that are good and upweights those that are bad, effectively neutralizing the drift. A detailed exposition of this concept can be found in [this post](/RandomWalkvsMartingale/), which connects the Radon–Nikodym transformation with random walk intuition.
 
 Ok, great, but you are now probability asking : Is that usefull maths or just some weird theory that will always be pointless ? Well, despite being nice and clever theorem, it does have it moment. Let's look at a classic application.
 
@@ -212,9 +212,9 @@ $$
 
 ## Link with the Stochastic Discount Factor  {#ConnectionSDF}
 
-In finance, the **Stochastic Discount Factor** (SDF), usually denoted $M_t$, plays exactly the same conceptual role. It is the core of assets pricing and the magic behind factors models [(go see the post)](quants.quest/FactorModelSDFLink/). 
+In finance, the **Stochastic Discount Factor** (SDF), usually denoted $M_t$, plays exactly the same conceptual role. It is the core of assets pricing and the magic behind factors models [(go see the post)](/FactorModelSDFLink/).
 
-The SDF discounts risky future payoffs back to today’s value, adjusting for both time and risk, ensuring that random walks with drift become martingales. To gain more insight, check out our [previous post about random walks](quants.quest/RandomWalkvsMartingale/).  
+The SDF discounts risky future payoffs back to today’s value, adjusting for both time and risk, ensuring that random walks with drift become martingales. To gain more insight, check out our [previous post about random walks](/RandomWalkvsMartingale/).
 
 ## Conclusion  {#Conclusion}
 
@@ -228,7 +228,7 @@ This transformation is not only a theoretical tool: in finance, it underpins the
 
 If you’d like to explore these ideas more deeply, the following resources provide both mathematical rigor and economic intuition:
 
-1. [*Random Walk vs Martingale*](quants.quest/RandomWalkvsMartingale/) — an accessible explanation of how measure changes reshape stochastic dynamics.
+1. [*Random Walk vs Martingale*](/RandomWalkvsMartingale/) — an accessible explanation of how measure changes reshape stochastic dynamics.
 2. **Bjork, T. (2009).** *Arbitrage Theory in Continuous Time.* Oxford University Press.  
    A comprehensive reference on measure changes, martingales, and the Radon–Nikodym derivative in continuous-time finance.
 3. **Cochrane, J. H. (2005).** *Asset Pricing.* Princeton University Press.  

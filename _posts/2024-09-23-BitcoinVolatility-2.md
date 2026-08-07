@@ -4,7 +4,7 @@ title: Estimating Bitcoin's Volatility using a GARCH Model
 categories: [Statistics, Quantitative Finance, Algo Trading, Python]
 tags: [bitcoin, crypto, volatility, garch, forecasting, binance, python, risk management, financial modeling]
 excerpt: Learn how to estimate and forecast Bitcoin volatility using GARCH models in Python with Binance data.
-image: /thumbnails/BitcoinVolatility2.jpeg
+image: /thumbnails/BitcoinVolatility2-v3.jpg
 hidden: false
 ---
 
@@ -23,7 +23,7 @@ hidden: false
 
 ## Introduction
 
-In our [last post](quants.quest/BitcoinVolatility-1/), we discussed the Exponentially Weighted Moving Average (EWMA) method for estimating Bitcoin’s volatility. We used historical data from Binance and implemented the EWMA model to track volatility. To fetch the data, check out this [previous post](quants.quest/DataBaseCreation/), where we explored how to use the Binance API. This time we’ll take it a step further by introducing the **GARCH** model, a more sophisticated method used to estimate but also forecast volatility. Let’s dive in!
+In our [last post](/BitcoinVolatility-1/), we discussed the Exponentially Weighted Moving Average (EWMA) method for estimating Bitcoin’s volatility. We used historical data from Binance and implemented the EWMA model to track volatility. To fetch the data, check out this [previous post](/DataBaseCreation/), where we explored how to use the Binance API. This time we’ll take it a step further by introducing the **GARCH** model, a more sophisticated method used to estimate but also forecast volatility. Let’s dive in!
 
 ## Motivations 
 
@@ -93,7 +93,7 @@ In financial time series like Bitcoin’s returns, there are well-documented **A
 
 ## Preparing the Data
 
-Before we fit a GARCH model, let’s load and clean our data, just like we did in the [previous post](quants.quest/BitcoinVolatility-1/) with EWMA. We’ll again use the Bitcoin data we stored in HDF5 format and ensure the dataset is free of missing values. Because we are gonna use plenty of statistical test, we are gonna have to tackle some hardware limitations. For this modelling we will work with 3 months historic and keep one months for out of sample testing.
+Before we fit a GARCH model, let’s load and clean our data, just like we did in the [previous post](/BitcoinVolatility-1/) with EWMA. We’ll again use the Bitcoin data we stored in HDF5 format and ensure the dataset is free of missing values. Because we are gonna use plenty of statistical test, we are gonna have to tackle some hardware limitations. For this modelling we will work with 3 months historic and keep one months for out of sample testing.
 
 ### Loading Data from HDF5
 
@@ -629,11 +629,11 @@ We began by discussing the motivations for moving beyond simple models, then del
 
 We showed how the GARCH model can be used both to estimate **realized volatility** and to generate **volatility forecasts** for the next hour. This ability to project future volatility is incredibly useful for traders, risk managers, and anyone involved in high-frequency trading environments where knowing short-term risk is critical.
 
-In [the next post](quants.quest/BitcoinVolatility-2/), we will dive deeper into volatility forecasting by exploring alternative data points like Low and High. Stay tuned for the final part of our series as we continue to explore the fascinating world of volatility modeling for Bitcoin !
+In [the next post](/BitcoinVolatility-3/), we will dive deeper into volatility forecasting by exploring alternative data points like Low and High. Stay tuned for the final part of our series as we continue to explore the fascinating world of volatility modeling for Bitcoin !
 
 ## Additional Resources
 
-- **Code Repository**: [GitHub Link](quants.quest/BitcoinVolatilityEstimation/tree/main) 
+- **Code Repository**: [GitHub Link](https://github.com/Zaltarba/BitcoinVolatilityEstimation/tree/main)
 - **Adviced Reading**: John Hull's *Options, Futures, and Other Derivatives* and Collin Bennet's *Trading Volatility*
 
 Feel free to check out the GitHub repository for the complete code and try experimenting with different parameters to see how they affect volatility estimates.

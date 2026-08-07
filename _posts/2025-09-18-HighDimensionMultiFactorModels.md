@@ -3,12 +3,13 @@ layout: post
 title: "Multi-Factor Models: Could Less Be Better?"
 categories: [Statistics, Quantitative Finance,]
 excerpt: "A literature-based exploration of the current debate in asset pricing: should we embrace high-dimensional stochastic discount factor learning, or stick with parsimonious classic approaches? Both schools of thought coexist in today’s research."
-image: /thumbnails/HighDimensionMultiFactorModels.jpeg
 hidden: True
+robots: "noindex, follow"
+sitemap: false
 tags: [asset pricing, factor models, stochastic discount factor, machine learning, finance, sdf, IPAT]
 ---
 
-# Multi-Factor Models: Could Less Be Better?
+## Multi-Factor Models: Could Less Be Better?
 
 ## Table of Contents
 

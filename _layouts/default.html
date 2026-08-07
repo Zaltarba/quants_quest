@@ -1,183 +1,159 @@
 <!DOCTYPE html>
-<html>
-    
+<html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E9WTMM8K0C"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-E9WTMM8K0C');
-    </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
-    {% seo %}
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E9WTMM8K0C"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-E9WTMM8K0C');
+  </script>
 
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/style.css">
-    <link rel="shortcut icon" type="image/ico" href="favicon.ico">
-    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml">
-    
-    <!-- <link rel="canonical" href="{{ site.url }}{{ page.url }}"> -->
-    <meta name="theme-color" content="#000000">
-    <link rel="icon" href="{{ site.baseurl }}/favicon.ico" type="image/x-icon">
-    {% include analytics_head.html %}
+  {% seo %}
+  {% if page.robots %}
+  <meta name="robots" content="{{ page.robots }}">
+  {% endif %}
 
-    <style>
-        .content, .post-image {
-            flex-basis: 50%;
-            padding-right: 20px;
-        }        
-        .post-image img {
-            width: 75%;
-            height: auto;
-            border-radius: 8px;
-        }
-        html, body {
-          height: 100%;
-          margin: 0;
-          padding: 0;
-        }
-        
-        body {
-          /* subtle near-white gradient */
-          background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
-          background-repeat: no-repeat;
-          background-attachment: fixed;
-          background-size: cover;
-        }
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ '/feed.xml' | relative_url }}">
+  <meta name="theme-color" content="#0b1f3a">
+  <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" type="image/x-icon">
+  {% include analytics_head.html %}
+</head>
+<body class="layout-{{ page.layout | default: 'default' }}{% if page.url == '/' %} is-home{% endif %}{% if page.wide %} is-wide{% endif %}">
+  <a class="skip-link" href="#main">Skip to content</a>
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .content, .post-image {
-                flex-basis: 100%;
-            }
-            .post-image {
-                margin-top: 20px; /* Add some space between the text and the image */
-            }
-        }
-        .site-info h1 {
-            text-align: center;
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
 
-    /* Academic serif font */
-    .header-inner {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 30px 20px;
-    }
-    
-    /* Centered logo at the top */
-    .header-logo img {
-        max-width: 175px;
-        height: auto;
-        margin-bottom: 10px;
-        border-radius: 8px; /* optional aesthetic touch */
-    }
-    
-    /* Description (site.description) styled professionally */
-    .site-subtitle {
-        font-size: 1.25em;
-        font-weight: 700; /* bold */
-        color: #333;
-        margin: 0;
-    }
-    
-    /* Navigation below */
-    .header-nav {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 5px;
-        margin-top: 10px;
-    }
-    
-    .header-nav a {
-        text-decoration: none;
-        color: #333;
-        font-weight: 500;
-        padding: 5px 10px;
-        transition: color 0.3s;
-    }
-    
-    .header-nav a:hover {
-        color: #007bff;
-    }
-    
-    /* Mobile adjustments */
-    @media (max-width: 768px) {
-        .header-logo img {
-            max-width: 90px;
-        }
-        .site-subtitle {
-            font-size: 1.1em;
-        }
-    }
+  <div class="wrapper-container">
+    <header class="site-header{% if page.url == '/' %} site-header--home{% endif %}">
+      <div class="site-header__inner">
+        <a class="site-brand" href="{{ '/' | relative_url }}" aria-label="{{ site.name }} home">
+          <img src="{{ site.avatar | relative_url }}" alt="" width="700" height="650" decoding="async">
+        </a>
 
-    </style>
-  </head>  <body>
+        <div class="site-intro">
+          <p class="site-subtitle">{{ site.description }}</p>
+        </div>
 
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NN73HD9T"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-      
-    <div class="wrapper-container">
-      <div class="wrapper-masthead">
-        <div class="header-container">
-            <div class="header-inner">
-                <!-- Centered logo -->
-                <div class="header-logo">
-                    <a href="{{ site.baseurl }}/">
-                        <img src="{{ site.baseurl }}{{ site.avatar }}" alt="{{ site.name }}" />
-                    </a>
-                </div>
-            
-                <!-- Description below -->
-                <div class="header-center">
-                    <p class="site-subtitle">{{ site.description }}</p>
-                </div>
-            
-                <!-- Navigation below -->
-                <nav class="header-nav">
-                    <a href="{{ site.baseurl }}/">Posts</a>
-                    <a href="{{ site.baseurl }}/teaching">Teaching</a>
-                    <a href="{{ site.baseurl }}/search">Search</a>
-                    <a href="{{ site.baseurl }}/about_me">About me</a>
-                </nav>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+          <span class="nav-toggle__label">Menu</span>
+          <span class="nav-toggle__icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+
+        <nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
+          <a class="nav-link{% if page.url == '/' or page.layout == 'post' %} is-active{% endif %}" href="{{ '/' | relative_url }}">Articles</a>
+
+          <details class="topics-menu{% if page.url == '/categories/' or page.url == '/archive/' %} is-active{% endif %}">
+            <summary>Topics</summary>
+            <div class="topics-menu__panel">
+              <a href="{{ '/categories/' | relative_url }}#quantitative-finance">Quantitative Finance</a>
+              <a href="{{ '/categories/' | relative_url }}#statistics">Statistics &amp; Time Series</a>
+              <a href="{{ '/categories/' | relative_url }}#research">Deep Learning &amp; Research</a>
+              <a href="{{ '/categories/' | relative_url }}#python">Python</a>
+              <a class="topics-menu__all" href="{{ '/categories/' | relative_url }}">View all topics</a>
             </div>
-      </div>
-      
-      <div class="wrapper-main">
-        <div id="main" role="main" class="container">
-          {{ content }}
-        </div>
-      </div>
+          </details>
 
-      <div class="wrapper-footer">
-        <div class="container">
-          <footer class="footer">
-            {% include svg-icons.html %}
-          </footer>
-        </div>
+          <a class="nav-link{% if page.url == '/teaching/' %} is-active{% endif %}" href="{{ '/teaching/' | relative_url }}">Teaching</a>
+          <a class="nav-link{% if page.url == '/about_me/' %} is-active{% endif %}" href="{{ '/about_me/' | relative_url }}">About</a>
+          <a class="nav-search{% if page.url == '/search/' %} is-active{% endif %}" href="{{ '/search/' | relative_url }}" aria-label="Search articles">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+            <span>Search</span>
+          </a>
+        </nav>
       </div>
+    </header>
+
+    <div class="wrapper-main">
+      <main id="main" class="container">
+        {{ content }}
+      </main>
     </div>
 
-    {% include analytics.html %}
-  </body>
-</html>
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div class="site-footer__about">
+          <a class="site-footer__brand" href="{{ '/' | relative_url }}">{{ site.name }}</a>
+          <p>{{ site.description }}</p>
+        </div>
+        <nav class="site-footer__nav" aria-label="Footer navigation">
+          <a href="{{ '/' | relative_url }}">Articles</a>
+          <a href="{{ '/categories/' | relative_url }}">Topics</a>
+          <a href="{{ '/archive/' | relative_url }}">Archive</a>
+          <a href="{{ '/teaching/' | relative_url }}">Teaching</a>
+          <a href="{{ '/about_me/' | relative_url }}">About</a>
+          <a href="{{ '/contact/' | relative_url }}">Contact</a>
+        </nav>
+        <div class="site-footer__social">
+          {% include svg-icons.html %}
+        </div>
+      </div>
+      <p class="site-footer__copyright">&copy; {{ 'now' | date: '%Y' }} {{ site.author }}. Built with Jekyll.</p>
+    </footer>
+  </div>
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    processEscapes: true
-  }
-});
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <button class="back-to-top" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"></path></svg>
+  </button>
+
+  <script>
+    (function () {
+      var toggle = document.querySelector('.nav-toggle');
+      var nav = document.getElementById('primary-navigation');
+      var backToTop = document.querySelector('.back-to-top');
+      var progress = document.querySelector('.reading-progress span');
+
+      if (toggle && nav) {
+        toggle.addEventListener('click', function () {
+          var open = nav.classList.toggle('is-open');
+          toggle.setAttribute('aria-expanded', String(open));
+        });
+
+        nav.addEventListener('click', function (event) {
+          if (event.target.closest('a') && window.innerWidth <= 768) {
+            nav.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      document.addEventListener('click', function (event) {
+        document.querySelectorAll('.topics-menu[open]').forEach(function (menu) {
+          if (!menu.contains(event.target)) menu.removeAttribute('open');
+        });
+      });
+
+      function updateScrollUi() {
+        var scrollTop = window.scrollY || document.documentElement.scrollTop;
+        var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        if (progress) progress.style.width = (scrollable > 0 ? (scrollTop / scrollable) * 100 : 0) + '%';
+        if (backToTop) backToTop.classList.toggle('is-visible', scrollTop > 700);
+      }
+
+      window.addEventListener('scroll', updateScrollUi, { passive: true });
+      updateScrollUi();
+
+      if (backToTop) {
+        backToTop.addEventListener('click', function () {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+    }());
+  </script>
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true
+    }
+  });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</body>
+</html>

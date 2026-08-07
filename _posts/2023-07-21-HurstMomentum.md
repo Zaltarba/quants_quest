@@ -5,9 +5,11 @@ categories: [Personal Project,Algo Trading]
 excerpt: This blog post is an humble attempt at implementing a momentum strategy using a lesser-known metric, the Hurst exponent
 image: /thumbnails/HurstMomentum.jpeg
 hidden: true
+robots: "noindex, follow"
+sitemap: false
 ---
 
-# Introduction
+## Introduction
 
 In the history of the financial markets, various trading strategies have emerged over the years, each offering an approach to profiting from price movements. One such method is "Momentum Trading". This trading strategy capitalizes on the belief that assets exhibiting persistent price trends tend to continue moving in the same direction for a period.
 
@@ -15,7 +17,7 @@ To assess the persistence of these price trends, traders and analysts can turn t
 
 In this blog post is an humble attempt at implementing a momentum strategy using a lesser-known metric, the Hurst exponent. Named after British hydrologist, Harold Edwin Hurst, this mathematical tool has found diverse applications in various disciplines, including finance, owing to its ability to reveal valuable insights into asset price movements.
 
-# Theoretical Foundations of the Model
+## Theoretical Foundations of the Model
 
 ## The Core Principle of Momentum Trading
 
@@ -62,7 +64,7 @@ We will use the folowing approach :
   2. If it is the case, we either take a long position if stock is bullish or short position if the stock is bearish. In both cases we will put 10 bucks.
   3. We then hold the stock for 3 days 
 
-# A pratical implementation 
+## A pratical implementation
 
 Let's now implement that in python ! 
 
@@ -95,7 +97,7 @@ In this post, we will work we a small selection of historical American stocks :
 
 These stocks had over the last 10 years the folowing evolution :
 
-![Figure 1](/quants_quest/images/MT_Evolution_of_stocks.png)
+![Figure 1](/images/MT_Evolution_of_stocks.png)
 
 ## Coding the strategy 
 
@@ -290,15 +292,15 @@ Now that we an coded our momentum strategy, we can take a look at our results. T
 
 First we can look at the strategy performance for each stock :
 
-![Figure 2](/quants_quest/images/MT_Stocks_capital_gain.png)
+![Figure 2](/images/MT_Stocks_capital_gain.png)
 
 First of all, both strategies have gained capital for some stock and loss capital for some stocks. But from this graph, it doesn't seems our momentum trading strategy added value in comparaison to the buy and hold strategy. In order to check that, we look at the portfolio performance :
 
-![figure 3](/quants_quest/images/MT_Portfolio_capital_gain.png)
+![figure 3](/images/MT_Portfolio_capital_gain.png)
 
 Indeed, it appears we have almost no extra capital gain with our strategy. Yet, if look at both strategies performance, our trading strategy seems to get smoother returns.  
 
-# Conclusion 
+## Conclusion
 
 I haven't find a way to become a billionaire yet !
 

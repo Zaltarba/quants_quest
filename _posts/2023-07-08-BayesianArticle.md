@@ -6,7 +6,7 @@ excerpt: Let's explore a Bayesian framework enhanced by Monte Carlo simulation m
 image: /thumbnails/BayesianClustering.jpeg
 ---
 
-# A model-based clustering of multiple time-series algorithm
+## A model-based clustering of multiple time-series algorithm
 
 This project is a common work with Gabriel Guaquiere. It is a pratical implementation of the methods from [Model-Based Clustering of Multiple Time Series](https://www.researchgate.net/publication/4756297_Model-Based_Clustering_of_Multiple_Time_Series) by Frühwirth-Schnatter, and S. Kaufmann.  
 You can check the python implementation on my [Github](https://github.com/Zaltarba/Bayesian_statistics_project.git).

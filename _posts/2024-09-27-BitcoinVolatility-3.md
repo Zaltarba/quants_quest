@@ -3,7 +3,7 @@ layout: post
 title: Bitcoin Volatility Estimation with the Parkinson Estimator in Python
 categories: [Statistics, Quantitative Finance, Algo Trading, Python]
 excerpt: Learn how to estimate Bitcoin's volatility using the Parkinson estimator in Python with Binance data. Includes theory, implementation, and comparisons to classic volatility measures.
-image: /thumbnails/BitcoinVolatility3.webp
+image: /thumbnails/BitcoinVolatility3-v3.jpg
 hidden: false
 tags: [bitcoin, crypto, volatility, parkinson estimator, range based, risk management, forecasting, binance, python, quant finance]
 ---
@@ -20,12 +20,12 @@ tags: [bitcoin, crypto, volatility, parkinson estimator, range based, risk manag
 
 ## The Parkinson Estimator for Bitcoin Volatility {#introduction}
 
-In this third installment of our series on Bitcoin volatility, we delve into a new volatility estimator, this time based on High and Low data points. This approach not only leverages high and low price points but also offer more precise volatility estimations. To fetch the data, check out this [previous post](quants.quest/DataBaseCreation/), where we explored how to use the Binance API.
+In this third installment of our series on Bitcoin volatility, we delve into a new volatility estimator, this time based on High and Low data points. This approach not only leverages high and low price points but also offer more precise volatility estimations. To fetch the data, check out this [previous post](/DataBaseCreation/), where we explored how to use the Binance API.
 
 Small recap of the previous articles of this serie : 
 
-- [**Part 1 article**](quants.quest/BitcoinVolatility-1/) introduced the basic concepts of volatility, focusing on historical volatility calculations using closing prices from Binance data and the EWMA estimator.
-- [**Part 2 article**](quants.quest/BitcoinVolatility-2/) expanded on these concepts by examining the use of econometric model (GARCH) to modelize complex behaviours (ARCH effect).
+- [**Part 1 article**](/BitcoinVolatility-1/) introduced the basic concepts of volatility, focusing on historical volatility calculations using closing prices from Binance data and the EWMA estimator.
+- [**Part 2 article**](/BitcoinVolatility-2/) expanded on these concepts by examining the use of econometric model (GARCH) to modelize complex behaviours (ARCH effect).
 
 These analyses provided a groundwork for understanding the complexities of Bitcoin's price dynamics and set the stage for integrating more sophisticated statistical techniques.
 
@@ -125,7 +125,7 @@ By the central limit theorem, as the sample size $ n $ increases, the estimator 
 
 ### Binance Bitcoin Data Preparation
 
-As we've done in previous articles, we’ll follow a similar data preparation process here. For those needing a refresher, we previously explained how to fetch and store Binance data in an HDF5 file in [this post](quants.quest/DataBaseCreation/). It's this dataset we will exploit here.
+As we've done in previous articles, we’ll follow a similar data preparation process here. For those needing a refresher, we previously explained how to fetch and store Binance data in an HDF5 file in [this post](/DataBaseCreation/). It's this dataset we will exploit here.
 
 ```python
 import pandas as pd 
