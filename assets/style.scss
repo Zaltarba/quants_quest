@@ -13,7 +13,6 @@
 /* BASE RULES */
 /**************/
 
-@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 html {
   font-size: 100%;
@@ -2855,3 +2854,5 @@ input:focus-visible {
     animation-iteration-count: 1 !important;
   }
 }
+
+@import "editorial";

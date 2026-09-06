@@ -1,4 +1,8 @@
 ---
+eyebrow: "Behind the journal"
+subtitle: "Research, teaching, and the ideas that connect them."
+page_style: about
+description: "About Balthazar Courvoisier, quantitative researcher and PhD student working on deep learning for finance. Education, research interests, and experience."
 layout: page
 title: About me
 permalink: /about_me/
@@ -6,8 +10,7 @@ permalink: /about_me/
 
 Quantitative Researcher and PhD student working on deep learning applications to the world of finance. Stock markets enthusiast !
 
-## Education 🏫
-
+## Education
 - [Polytechnique Paris](https://www.ip-paris.fr/en/home-en/) - [Master 2 Data Science](https://www.ip-paris.fr/en/education/masters/applied-mathematics-and-statistics-program/master-year-2-data-science) - *2022/2023* 
   - Courses : Deep Learning, Computer Vision, Missing data and causality, Tail Events Analysis
     
@@ -17,8 +20,7 @@ Quantitative Researcher and PhD student working on deep learning applications to
 - [Janson de Sailly](https://www.janson-de-sailly.fr/cpge-presentation-generale-structure/) - Classe Préparatoire aux Grandes Écoles - *2017/2019*  
   - Physics and Engineering class, PCSI-PSI* 
 
-## Work Experiences 🏦
-
+## Work Experiences
 - **Quant Research at [Queensfield AI](https://www.queensfield.ai/about-us.html)**
   - On going since January 2024
   - Successfully implemented a market-neutral alpha strategy based on pair trading
@@ -47,8 +49,7 @@ Quantitative Researcher and PhD student working on deep learning applications to
   - Conducted a thorough investigation into how social factors influence the financial health of municipalities
   - Implemented statistical tools and metrics to facilitate ongoing reporting
 
-## Teaching 🏫
-
+## Teaching
 - **Python instructer at [Dauphine PSL](https://dauphine.psl.eu/formations/masters/finance/m2-gestion-actifs-asset-management)**
   - On going since 2025
   - Python for Finance Instructor, MSc in Asset Management
@@ -57,8 +58,7 @@ Quantitative Researcher and PhD student working on deep learning applications to
   - On going since 2019
   - Mathematics lessons and tutoring for students in CPGE
     
-## Personal and academic project 🎓
-
+## Personal and academic project
 - **Bayesian Statistics Project** - [Github](https://github.com/Zaltarba/Bayesian_statistics_project.git) - *2023*  
 The aim of this project is to group a set of time series into clusters, and to estimate the model describing each cluster. Based on the folowing [article](https://www.researchgate.net/publication/4756297_Model-Based_Clustering_of_Multiple_Time_Series). More about it in [this post](/BayesianArticle/).
 

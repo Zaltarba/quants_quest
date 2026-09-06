@@ -1,23 +1,23 @@
 /* Expandable explanatory boxes used inside article content. */
 .article-content details {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 12px 16px;
+  border: 1px solid var(--qq-line);
+  border-radius: var(--qq-radius);
+  padding: 18px 20px;
   margin-bottom: 20px;
-  background: #fefefe;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  background: var(--qq-surface);
+  box-shadow: none;
   transition: box-shadow 0.3s, transform 0.2s;
 }
 
 .article-content details:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transform: translateY(-1px);
+  box-shadow: none;
+  transform: none;
 }
 
 .article-content summary {
   position: relative;
   padding-left: 25px;
-  color: #333;
+  color: var(--qq-ink);
   font-size: 1.05rem;
   font-weight: 600;
   list-style: none;
@@ -27,7 +27,7 @@
 }
 
 .article-content summary:hover {
-  color: #0748ab;
+  color: var(--qq-blue-dark);
 }
 
 .article-content summary::before {
@@ -35,21 +35,21 @@
   position: absolute;
   left: 0;
   top: 50%;
-  color: #0748ab;
+  color: var(--qq-blue-dark);
   font-size: 0.85em;
   transform: translateY(-50%) rotate(0deg);
   transition: transform 0.3s, color 0.3s;
 }
 
 .article-content details[open] summary::before {
-  color: #0748ab;
+  color: var(--qq-blue-dark);
   transform: translateY(-50%) rotate(90deg);
 }
 
 .article-content details p {
   margin-top: 12px;
-  color: #555;
-  font-size: 0.95rem;
+  color: var(--qq-ink);
+  font-size: 1em;
   line-height: 1.7;
   transition: color 0.3s;
 }

@@ -1,0 +1,2 @@
+{% assign thumbnail_dimensions = site.data.thumbnails[include.src] %}
+<img{% if include.class %} class="{{ include.class }}"{% endif %} src="{{ include.src | relative_url }}" alt=""{% if thumbnail_dimensions %} width="{{ thumbnail_dimensions.width }}" height="{{ thumbnail_dimensions.height }}"{% endif %}{% if include.priority %} fetchpriority="high"{% else %} loading="lazy"{% endif %} decoding="async">

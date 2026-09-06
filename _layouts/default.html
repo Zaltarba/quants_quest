@@ -4,41 +4,30 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E9WTMM8K0C"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-E9WTMM8K0C');
-  </script>
-
   {% seo %}
   {% if page.robots %}
   <meta name="robots" content="{{ page.robots }}">
   {% endif %}
 
+  <link rel="preload" href="{{ '/fonts/EBGaramond-Regular.ttf' | relative_url }}" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ '/feed.xml' | relative_url }}">
-  <meta name="theme-color" content="#0b1f3a">
+  {% if page.layout == 'post' %}<link rel="stylesheet" href="{{ '/assets/posts_custom.css' | relative_url }}">{% endif %}
+  <link rel="alternate" type="application/atom+xml" title="{{ site.name }}" href="{{ '/feed.xml' | relative_url }}">
+  <meta name="theme-color" content="#ffffff">
   <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" type="image/x-icon">
   {% include analytics_head.html %}
 </head>
-<body class="layout-{{ page.layout | default: 'default' }}{% if page.url == '/' %} is-home{% endif %}{% if page.wide %} is-wide{% endif %}">
+<body class="layout-{{ page.layout | default: 'default' }}{% if page.url == '/' or paginator %} is-home{% endif %}{% if page.wide %} is-wide{% endif %}">
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="reading-progress" aria-hidden="true"><span></span></div>
+  {% if page.layout == 'post' %}<div class="reading-progress" aria-hidden="true"><span></span></div>{% endif %}
 
   <div class="wrapper-container">
-    <header class="site-header{% if page.url == '/' %} site-header--home{% endif %}">
+    <header class="site-header">
       <div class="site-header__inner">
         <a class="site-brand" href="{{ '/' | relative_url }}" aria-label="{{ site.name }} home">
-          <img src="{{ site.avatar | relative_url }}" alt="" width="700" height="650" decoding="async">
+          <span class="site-brand__name">{{ site.name }}</span>
         </a>
-
-        <div class="site-intro">
-          <p class="site-subtitle">{{ site.description }}</p>
-        </div>
 
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
           <span class="nav-toggle__label">Menu</span>
@@ -46,7 +35,7 @@
         </button>
 
         <nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
-          <a class="nav-link{% if page.url == '/' or page.layout == 'post' %} is-active{% endif %}" href="{{ '/' | relative_url }}">Articles</a>
+          <a class="nav-link{% if page.url == '/' or paginator or page.layout == 'post' %} is-active{% endif %}" href="{{ '/' | relative_url }}">Articles</a>
 
           <details class="topics-menu{% if page.url == '/categories/' or page.url == '/archive/' %} is-active{% endif %}">
             <summary>Topics</summary>
@@ -61,6 +50,7 @@
 
           <a class="nav-link{% if page.url == '/teaching/' %} is-active{% endif %}" href="{{ '/teaching/' | relative_url }}">Teaching</a>
           <a class="nav-link{% if page.url == '/about_me/' %} is-active{% endif %}" href="{{ '/about_me/' | relative_url }}">About</a>
+          <a class="nav-follow" href="{{ '/feed.xml' | relative_url }}">Follow via RSS {% include arrow.html direction='diagonal' %}</a>
           <a class="nav-search{% if page.url == '/search/' %} is-active{% endif %}" href="{{ '/search/' | relative_url }}" aria-label="Search articles">
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
             <span>Search</span>
@@ -79,7 +69,7 @@
       <div class="site-footer__inner">
         <div class="site-footer__about">
           <a class="site-footer__brand" href="{{ '/' | relative_url }}">{{ site.name }}</a>
-          <p>{{ site.description }}</p>
+          <p>{{ site.tagline }}.</p>
         </div>
         <nav class="site-footer__nav" aria-label="Footer navigation">
           <a href="{{ '/' | relative_url }}">Articles</a>
@@ -93,7 +83,7 @@
           {% include svg-icons.html %}
         </div>
       </div>
-      <p class="site-footer__copyright">&copy; {{ 'now' | date: '%Y' }} {{ site.author }}. Built with Jekyll.</p>
+      <p class="site-footer__copyright">&copy; {{ 'now' | date: '%Y' }} {{ site.author.name }} <span>A journal for curious minds.</span></p>
     </footer>
   </div>
 
@@ -128,6 +118,19 @@
         });
       });
 
+      document.addEventListener('keydown', function (event) {
+        if (event.key !== 'Escape') return;
+        document.querySelectorAll('.topics-menu[open]').forEach(function (menu) {
+          menu.removeAttribute('open');
+          menu.querySelector('summary').focus();
+        });
+        if (nav && nav.classList.contains('is-open')) {
+          nav.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.focus();
+        }
+      });
+
       function updateScrollUi() {
         var scrollTop = window.scrollY || document.documentElement.scrollTop;
         var scrollable = document.documentElement.scrollHeight - window.innerHeight;
@@ -140,12 +143,13 @@
 
       if (backToTop) {
         backToTop.addEventListener('click', function () {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
         });
       }
     }());
   </script>
 
+  {% if page.math %}
   <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -155,5 +159,6 @@
   });
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  {% endif %}
 </body>
 </html>

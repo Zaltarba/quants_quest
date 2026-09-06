@@ -1,4 +1,8 @@
 ---
+eyebrow: "Explore the journal"
+subtitle: "Follow an idea through finance, statistics, research, and code."
+page_style: topics
+description: "Explore research notes by topic: quantitative finance, statistics, time series, deep learning, algorithmic trading, and Python."
 layout: page
 permalink: /categories/
 title: Topics
@@ -6,8 +10,7 @@ wide: true
 ---
 
 {% assign sorted_categories = site.categories | sort %}
-<div class="topics-browser is-topic-index" data-topics-browser>
-  <p class="topics-browser__lead">Choose a topic to explore its articles.</p>
+<div class="topics-browser" data-topics-browser>
 
   <nav class="topics-browser__nav" aria-label="Choose a topic">
     {% for category in sorted_categories %}
@@ -32,31 +35,12 @@ wide: true
             <h2>{{ category_name }}</h2>
             <p class="topic-group__count">{{ category_posts.size }} {% if category_posts.size == 1 %}article{% else %}articles{% endif %}</p>
           </div>
-          <a class="topic-collection__open" href="#{{ category_name | slugify }}">View articles <span aria-hidden="true">&rarr;</span></a>
+          <a class="topic-collection__open" href="#{{ category_name | slugify }}">View articles {% include arrow.html %}</a>
         </div>
 
-        <div class="article-grid">
+        <div class="topic-entries article-list">
           {% for post in category_posts %}
-          {% assign words = post.content | number_of_words %}
-          {% assign minutes = words | plus: 199 | divided_by: 200 %}
-          <article class="article-card">
-            <a href="{{ post.url | relative_url }}">
-              {% if post.image %}
-              <div class="article-card__image">
-                <img src="{{ post.image | relative_url }}" alt="" width="640" height="400" loading="lazy" decoding="async">
-              </div>
-              {% endif %}
-              <div class="article-card__body">
-                <div class="article-card__meta">
-                  <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %e, %Y" }}</time>
-                  <span aria-hidden="true">&middot;</span><span>{{ minutes }} min</span>
-                </div>
-                <h3>{{ post.title }}</h3>
-                <div class="article-card__excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</div>
-                <span class="article-card__read">Read article <span aria-hidden="true">&rarr;</span></span>
-              </div>
-            </a>
-          </article>
+            {% include article_row.html post=post %}
           {% endfor %}
         </div>
       </section>
@@ -74,7 +58,8 @@ wide: true
     var links = Array.prototype.slice.call(browser.querySelectorAll('[data-topic-link]'));
 
     function showTopic() {
-      var requested = decodeURIComponent(window.location.hash.slice(1)).toLowerCase();
+      var requested = '';
+      try { requested = decodeURIComponent(window.location.hash.slice(1)).toLowerCase(); } catch (error) { /* Show all topics for a malformed URL. */ }
       var selected = groups.find(function (group) { return group.id.toLowerCase() === requested; });
 
       browser.classList.toggle('is-topic-index', !selected);

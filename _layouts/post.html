@@ -2,8 +2,8 @@
 layout: default
 ---
 
-{% assign words = content | number_of_words %}
-{% assign reading_minutes = words | plus: 199 | divided_by: 200 %}
+{% assign words = content | strip_html | number_of_words %}
+{% assign reading_minutes = words | plus: 199 | divided_by: 200 | at_least: 1 %}
 {% assign visible_posts = site.posts | where_exp: "post", "post.hidden != true" %}
 {% assign current_index = nil %}
 {% for candidate in visible_posts %}
@@ -29,8 +29,9 @@ layout: default
       </nav>
 
       <h1>{{ page.title }}</h1>
+      {% if page.excerpt %}<p class="post-header__dek">{{ page.excerpt | strip_html }}</p>{% endif %}
       <div class="post-header__meta">
-        <p class="author_title">{{ site.author }}</p>
+        <a class="author_title" rel="author" href="{{ '/about_me/' | relative_url }}">{{ site.author.name }}</a>
         <span aria-hidden="true">&middot;</span>
         <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %e, %Y" }}</time>
         <span aria-hidden="true">&middot;</span>
@@ -111,8 +112,6 @@ layout: default
           async>
   </script>
 </div>
-
-<link rel="stylesheet" href="{{ '/assets/posts_custom.css' | relative_url }}">
 
 <script>
   (function () {
@@ -196,10 +195,14 @@ layout: default
       button.textContent = 'Copy';
       button.setAttribute('aria-label', 'Copy code to clipboard');
       button.addEventListener('click', function () {
+        if (!navigator.clipboard) {
+          button.textContent = 'Select code to copy';
+          return;
+        }
         navigator.clipboard.writeText(pre.textContent).then(function () {
           button.textContent = 'Copied';
           window.setTimeout(function () { button.textContent = 'Copy'; }, 1600);
-        });
+        }).catch(function () { button.textContent = 'Select code to copy'; });
       });
       block.appendChild(button);
     });

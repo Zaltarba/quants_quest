@@ -2,9 +2,13 @@
 layout: default
 ---
 
-<article class="page">
+<article class="page{% if page.page_style %} page--{{ page.page_style }}{% endif %}">
 
-  {% if page.title %}<h1>{{ page.title }}</h1>{% endif %}
+  <header class="page-header">
+    <p class="eyebrow">{{ page.eyebrow | default: site.name }}</p>
+    {% if page.title %}<h1>{{ page.title }}</h1>{% endif %}
+    {% if page.subtitle %}<p class="page-header__lead">{{ page.subtitle }}</p>{% endif %}
+  </header>
 
   <div class="entry">
     {{ content }}

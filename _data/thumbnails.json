@@ -1,0 +1,98 @@
+{
+    "/thumbnails/AboutMarketSentiment-v3.jpg":  {
+                                                    "height":  1000,
+                                                    "width":  1600
+                                                },
+    "/thumbnails/AboutMarketSentiment.jpeg":  {
+                                                  "height":  1024,
+                                                  "width":  1024
+                                              },
+    "/thumbnails/BayesianClustering.jpeg":  {
+                                                "height":  1024,
+                                                "width":  1024
+                                            },
+    "/thumbnails/BitcoinVolatility1-v3.jpg":  {
+                                                  "height":  1000,
+                                                  "width":  1600
+                                              },
+    "/thumbnails/BitcoinVolatility1.jpeg":  {
+                                                "height":  1024,
+                                                "width":  1024
+                                            },
+    "/thumbnails/BitcoinVolatility2-v3.jpg":  {
+                                                  "height":  1000,
+                                                  "width":  1600
+                                              },
+    "/thumbnails/BitcoinVolatility2.jpeg":  {
+                                                "height":  1024,
+                                                "width":  1024
+                                            },
+    "/thumbnails/BitcoinVolatility3-v3.jpg":  {
+                                                  "height":  1000,
+                                                  "width":  1600
+                                              },
+    "/thumbnails/DataBaseCreation-v3.jpg":  {
+                                                "height":  1000,
+                                                "width":  1600
+                                            },
+    "/thumbnails/DataBaseCreation.jpeg":  {
+                                              "height":  1024,
+                                              "width":  1024
+                                          },
+    "/thumbnails/HiddenMarkovModel-v3.jpg":  {
+                                                 "height":  1000,
+                                                 "width":  1600
+                                             },
+    "/thumbnails/HiddenMarkovModel.jpeg":  {
+                                               "height":  1024,
+                                               "width":  1024
+                                           },
+    "/thumbnails/HurstEstimatorsReview.jpeg":  {
+                                                   "height":  1024,
+                                                   "width":  1024
+                                               },
+    "/thumbnails/HurstMomentum.jpeg":  {
+                                           "height":  1024,
+                                           "width":  1024
+                                       },
+    "/thumbnails/LinkingFactorModelsAndSDF.jpeg":  {
+                                                       "height":  1024,
+                                                       "width":  1024
+                                                   },
+    "/thumbnails/PairTrading1-v3.jpg":  {
+                                            "height":  1000,
+                                            "width":  1600
+                                        },
+    "/thumbnails/PairTrading1.jpeg":  {
+                                          "height":  1024,
+                                          "width":  1024
+                                      },
+    "/thumbnails/PiEstimation.jpeg":  {
+                                          "height":  1024,
+                                          "width":  1024
+                                      },
+    "/thumbnails/PythonInstallation.jpeg":  {
+                                                "height":  1024,
+                                                "width":  1024
+                                            },
+    "/thumbnails/RandomWalkvsMartingale.jpeg":  {
+                                                    "height":  1024,
+                                                    "width":  1024
+                                                },
+    "/thumbnails/RandomWalkwithDrift.jpeg":  {
+                                                 "height":  1024,
+                                                 "width":  1024
+                                             },
+    "/thumbnails/SDA_explained.jpeg":  {
+                                           "height":  394,
+                                           "width":  496
+                                       },
+    "/thumbnails/WarnerBros.jpeg":  {
+                                        "height":  1024,
+                                        "width":  1024
+                                    },
+    "/images/logo.png":  {
+                             "height":  650,
+                             "width":  700
+                         }
+}

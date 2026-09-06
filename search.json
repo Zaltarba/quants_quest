@@ -3,12 +3,16 @@
 [
   {% assign visible_posts = site.posts | where_exp: "post", "post.hidden != true" %}
   {% for post in visible_posts %}
+  {% assign search_image = post.image | default: '/images/logo.png' %}
+  {% assign thumbnail_dimensions = site.data.thumbnails[search_image] %}
   {
     "title": {{ post.title | jsonify }},
     "url": {{ post.url | relative_url | jsonify }},
     "category": {{ post.categories | join: ', ' | jsonify }},
     "date": {{ post.date | date: "%B %e, %Y" | jsonify }},
     "excerpt": {{ post.excerpt | strip_html | normalize_whitespace | truncatewords: 28 | jsonify }},
+    "image_width": {{ thumbnail_dimensions.width | default: 0 | jsonify }},
+    "image_height": {{ thumbnail_dimensions.height | default: 0 | jsonify }},
     "image": {{ post.image | default: '/images/logo.png' | relative_url | jsonify }}
   }{% unless forloop.last %},{% endunless %}
   {% endfor %}

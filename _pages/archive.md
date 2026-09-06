@@ -1,7 +1,11 @@
 ---
+eyebrow: "The collection"
+subtitle: "Every public post, gathered in one place."
+page_style: archive
+description: "Browse the Quants Quest article archive: essays on quantitative finance, statistics, deep learning, and Python, organized by year."
 layout: page
 permalink: /archive/
-title: Posts Archive
+title: Journal archive
 ---
 
 {% assign visible_posts = site.posts | where_exp: "post", "post.hidden != true" %}

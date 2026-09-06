@@ -1,4 +1,8 @@
 ---
+eyebrow: "Find an idea"
+subtitle: "Search the journal by title, topic, or keyword."
+page_style: search
+description: "Search Quants Quest articles by title, topic, or keyword."
 layout: page
 title: Search
 permalink: /search/
@@ -7,7 +11,6 @@ sitemap: false
 ---
 
 <div class="search-shell">
-  <p class="search-lead">Find an article by title, topic, or keyword.</p>
   <label class="visually-hidden" for="search-input">Search articles</label>
   <input type="search" id="search-input" placeholder="Search articles..." autocomplete="off" spellcheck="false">
 
@@ -38,11 +41,15 @@ sitemap: false
     var suggestions = document.getElementById('search-suggestions');
 
     SimpleJekyllSearch({
+      templateMiddleware: function (property, value) {
+        if ((property === 'image_width' || property === 'image_height') && !value) return '';
+        return value;
+      },
       searchInput: input,
       resultsContainer: document.getElementById('results-container'),
       json: '{{ '/search.json' | relative_url }}',
-      noResultsText: '<li class="search-result"><div style="padding:18px">No matching articles found.</div></li>',
-      searchResultTemplate: '<li class="search-result"><a href="{url}"><img src="{image}" alt="" width="96" height="72" loading="lazy"><div><span class="search-result__meta">{category} &middot; {date}</span><h2>{title}</h2><p>{excerpt}</p></div></a></li>'
+      noResultsText: '<li class="search-result"><div class="search-empty">No matching posts found. Try another title or topic.</div></li>',
+      searchResultTemplate: '<li class="search-result"><a href="{url}"><img src="{image}" alt="" width="{image_width}" height="{image_height}" loading="lazy" decoding="async"><div><span class="search-result__meta">{category} &middot; {date}</span><h2>{title}</h2><p>{excerpt}</p></div></a></li>'
     });
 
     input.addEventListener('input', function () {
