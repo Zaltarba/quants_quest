@@ -2856,3 +2856,14 @@ input:focus-visible {
 }
 
 @import "editorial";
+
+// Keep the contents rail visibly to the right of the article on wide screens.
+@media (min-width: 901px) {
+  .article-toc {
+    position: relative;
+    left: 80px;
+    transform: none;
+  }
+}
+
+.post-tags a { background-color: #fff !important; }
