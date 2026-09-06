@@ -120,7 +120,7 @@ layout: default
     var mobileToc = document.querySelector('.article-toc-mobile');
     if (!content) return;
 
-    var headings = Array.prototype.slice.call(content.querySelectorAll('h2'));
+    var headings = Array.prototype.slice.call(content.querySelectorAll('h2, h3'));
     var manualHeading = headings.find(function (heading) {
       return /^table of content/i.test(heading.textContent.trim());
     });
@@ -130,7 +130,10 @@ layout: default
       var manualList = manualHeading.nextElementSibling;
       if (manualList && /^(OL|UL)$/.test(manualList.tagName)) {
         links = Array.prototype.slice.call(manualList.querySelectorAll('a[href^="#"]')).map(function (link) {
-          return { href: link.getAttribute('href'), label: link.textContent.trim() };
+          var href = link.getAttribute('href');
+          var target;
+          try { target = document.getElementById(decodeURIComponent(href.slice(1))); } catch (error) { target = null; }
+          return { href: href, label: link.textContent.trim(), level: target && target.tagName === 'H3' ? 3 : 2 };
         });
         manualHeading.classList.add('toc-source-hidden');
         manualList.classList.add('toc-source-hidden');
@@ -146,7 +149,7 @@ layout: default
           while (document.getElementById(id)) id = base + '-' + suffix++;
           heading.id = id;
         }
-        return { href: '#' + heading.id, label: heading.textContent.trim() };
+        return { href: '#' + heading.id, label: heading.textContent.trim(), level: heading.tagName === 'H3' ? 3 : 2 };
       });
     }
 
@@ -156,6 +159,7 @@ layout: default
         var link = document.createElement('a');
         link.href = item.href;
         link.textContent = item.label;
+        if (item.level === 3) link.classList.add('is-subsection');
         nav.appendChild(link);
       });
     }
@@ -178,7 +182,10 @@ layout: default
         entries.forEach(function (entry) {
           if (!entry.isIntersecting) return;
           tocLinks.forEach(function (link) {
-            link.classList.toggle('is-active', link.hash === '#' + entry.target.id);
+            var active = link.hash === '#' + entry.target.id;
+            link.classList.toggle('is-active', active);
+            if (active) link.setAttribute('aria-current', 'location');
+            else link.removeAttribute('aria-current');
           });
         });
       }, { rootMargin: '-18% 0px -70% 0px' });

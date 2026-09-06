@@ -149,7 +149,7 @@
     }());
   </script>
 
-  {% if page.math %}
+  {% if page.layout == 'post' or page.math %}
   <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
