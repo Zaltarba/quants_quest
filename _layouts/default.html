@@ -48,7 +48,13 @@
             </div>
           </details>
 
-          <a class="nav-link{% if page.url == '/teaching/' %} is-active{% endif %}" href="{{ '/teaching/' | relative_url }}">Teaching</a>
+          <details class="topics-menu{% if page.url == '/teaching/' or page.url == '/teaching/master-222-2026-2027/' %} is-active{% endif %}">
+            <summary>Teaching</summary>
+            <div class="topics-menu__panel">
+              <a href="{{ '/teaching/master-222-2026-2027/' | relative_url }}">Master 222 - 2026 / 2027</a>
+              <a href="{{ '/teaching/' | relative_url }}">Master 222 - 2025 / 2026</a>
+            </div>
+          </details>
           <a class="nav-link{% if page.url == '/about_me/' %} is-active{% endif %}" href="{{ '/about_me/' | relative_url }}">About</a>
           <a class="nav-follow" href="{{ '/feed.xml' | relative_url }}">Follow via RSS {% include arrow.html direction='diagonal' %}</a>
           <a class="nav-search{% if page.url == '/search/' %} is-active{% endif %}" href="{{ '/search/' | relative_url }}" aria-label="Search articles">

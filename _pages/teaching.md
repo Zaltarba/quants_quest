@@ -1,10 +1,10 @@
 --- 
 eyebrow: "In the classroom"
-subtitle: "Python for finance, from first principles to hands-on practice."
+subtitle: "Python for finance course materials for the 2025 / 2026 academic year."
 page_style: teaching
 description: "Python for finance course materials for Dauphine PSL Master 222: notebooks, exercises, solutions, and project instructions."
 layout: page 
-title: Teaching
+title: Master 222 - 2025 / 2026
 permalink: /teaching/ 
 ---
 
@@ -13,7 +13,7 @@ permalink: /teaching/
 <div class="course-title">
     <h2>Dauphine PSL – Master 222</h2>
     <p class="course-intro">
-        Introduction to Python (2025) 
+        Introduction to Python (2025 / 2026)
     </p>
 </div>
 
