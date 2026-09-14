@@ -19,7 +19,7 @@ permalink: /teaching/master-222-2026-2027/
 
 <p class="course-intro">
     Course notebooks are available on this
-    <a href="https://github.com/Zaltarba/PSL_python_for_finance/tree/main">GitHub repository</a>
+    <a href="https://github.com/Zaltarba/PSL_222_Python_2627">GitHub repository</a>
     and can be opened directly in Google Colab below.
 </p>
 
