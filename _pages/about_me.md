@@ -8,7 +8,7 @@ title: About me
 permalink: /about_me/
 ---
 
-Quantitative Researcher and PhD student working on deep learning applications to the world of finance. Stock markets enthusiast !
+Quantitative Researcher and PhD student working on deep learning applications to the world of finance.
 
 ## Education
 - [Polytechnique Paris](https://www.ip-paris.fr/en/home-en/) - [Master 2 Data Science](https://www.ip-paris.fr/en/education/masters/applied-mathematics-and-statistics-program/master-year-2-data-science) - *2022/2023* 
