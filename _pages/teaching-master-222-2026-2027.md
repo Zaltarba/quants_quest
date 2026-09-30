@@ -53,6 +53,7 @@ permalink: /teaching/master-222-2026-2027/
         <h3>Session 4</h3>
         <div class="session-links">
             <a href="https://colab.research.google.com/github/Zaltarba/PSL_222_Python_2627/blob/main/python_session_4.ipynb">Open in Colab</a>
+            <a href="https://colab.research.google.com/github/Zaltarba/PSL_222_Python_2627/blob/main/python_session_4_corrected.ipynb">Solutions</a>
         </div>
     </div>
 
@@ -60,6 +61,14 @@ permalink: /teaching/master-222-2026-2027/
         <h3>Session 5</h3>
         <div class="session-links">
             <a href="https://colab.research.google.com/github/Zaltarba/PSL_222_Python_2627/blob/main/python_session_5.ipynb">Open in Colab</a>
+            <a href="https://colab.research.google.com/github/Zaltarba/PSL_222_Python_2627/blob/main/python_session_5_corrected.ipynb">Solutions</a>
+        </div>
+    </div>
+
+    <div class="session-card">
+        <h3>Session 6</h3>
+        <div class="session-links">
+            <a href="https://colab.research.google.com/github/Zaltarba/PSL_222_Python_2627/blob/main/python_session_6.ipynb">Open in Colab</a>
         </div>
     </div>
 
