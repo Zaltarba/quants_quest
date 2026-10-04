@@ -59,7 +59,7 @@ h1, h2, h3, h4, h5, h6 { color: var(--qq-ink); }
 .publication-intro::after { z-index: -1; background-image: radial-gradient(rgba(21, 93, 252, .14) .8px, transparent .8px); background-size: 12px 12px; -webkit-mask-image: radial-gradient(ellipse 55% 90% at 50% 50%, #000, transparent); mask-image: radial-gradient(ellipse 55% 90% at 50% 50%, #000, transparent); }
 .publication-intro > * { position: relative; }
 .publication-intro h1, .page-header h1, .post-header h1 { color: var(--qq-navy); }
-.layout-post .wrapper-main { background: var(--qq-surface); }
+.layout-post .wrapper-main { background: var(--qq-background); }
 .publication-intro h1 { margin: 8px 0 14px; font: 400 clamp(64px, 7.5vw, 92px)/1.06 var(--qq-serif); letter-spacing: -3.5px; }
 .publication-intro__description { margin: 0; font: 400 29px/1.22 var(--qq-serif); color: var(--qq-muted); }
 .publication-intro__description br { display: none; }
@@ -153,7 +153,10 @@ h1, h2, h3, h4, h5, h6 { color: var(--qq-ink); }
 .article-toc-mobile { border-radius: var(--qq-radius); font-size: 15px; }
 .article-toc-mobile summary { color: var(--qq-muted); font: 500 16px/1.5 var(--qq-sans); padding: 16px; }
 .post-navigation { float: none; font-size: 15px; }
-.post-navigation a, .related-post { border-radius: var(--qq-radius); }
+.post-navigation a, .related-post {
+  border-radius: var(--qq-radius);
+  background: var(--qq-panel);
+}
 .post-navigation a:hover, .related-post:hover { border-color: var(--qq-blue); }
 .related-posts h2 { font: 400 30px/1.2 var(--qq-serif); }
 .related-post { font: 400 21px/1.2 var(--qq-serif); }

@@ -57,14 +57,14 @@ layout: default
     <nav class="post-navigation" aria-label="Adjacent articles">
       {% if older_post %}
       <a href="{{ older_post.url | relative_url }}">
-        <span>Previous article</span>
-        {{ older_post.title }}
+        <span class="post-navigation__label"><span aria-hidden="true">&larr;</span> Previous article</span>
+        <span class="post-navigation__title">{{ older_post.title }}</span>
       </a>
-      {% else %}<span></span>{% endif %}
+      {% endif %}
       {% if newer_post %}
       <a class="post-navigation__next" href="{{ newer_post.url | relative_url }}">
-        <span>Next article</span>
-        {{ newer_post.title }}
+        <span class="post-navigation__label">Next article <span aria-hidden="true">&rarr;</span></span>
+        <span class="post-navigation__title">{{ newer_post.title }}</span>
       </a>
       {% endif %}
     </nav>

@@ -2085,16 +2085,26 @@ input:focus-visible {
 }
 
 .post-navigation {
+  float: none;
+  width: 100%;
   margin-top: 64px;
   padding-top: 28px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
   border-top: 1px solid var(--qq-line);
 }
 
 .post-navigation a {
-  padding: 18px;
+  margin: 0;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  min-width: 0;
+  text-align: left;
+  letter-spacing: 0;
   border: 1px solid var(--qq-line);
   border-radius: 10px;
   color: var(--qq-ink);
@@ -2102,22 +2112,36 @@ input:focus-visible {
   text-decoration: none;
 }
 
-.post-navigation a:hover {
+.post-navigation a:hover,
+.post-navigation a:focus-visible {
   color: var(--qq-blue-dark);
   border-color: #a9c8f5;
 }
 
-.post-navigation__next {
-  text-align: right;
+.post-navigation a:focus-visible {
+  outline: 2px solid var(--qq-blue);
+  outline-offset: 4px;
 }
 
-.post-navigation span {
-  display: block;
+.post-navigation__next {
+  grid-column: 2;
+}
+
+.post-navigation .post-navigation__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   color: var(--qq-muted);
   font-size: 11px;
   font-weight: 750;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+.post-navigation .post-navigation__title {
+  color: inherit;
+  font: 500 17px/1.5 var(--qq-sans);
+  overflow-wrap: anywhere;
 }
 
 .related-posts {
@@ -2811,7 +2835,7 @@ input:focus-visible {
   }
 
   .post-navigation__next {
-    text-align: left;
+    grid-column: 1;
   }
 
   .search-result a {
