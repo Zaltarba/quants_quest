@@ -1,5 +1,6 @@
 ---
 layout: post
+date: 2026-10-04
 title: "Signed Dual Attention Explained"
 categories: [Research, Computer Science]
 excerpt: "Discover Signed Dual Attention: an approach to model both positive and negative relationships in deep learning"
@@ -97,6 +98,8 @@ This perspective highlights SDA as a compact and efficient alternative to multi-
 
 
 Preliminary experiments suggest that SDA behaves differently across datasets depending on the underlying **autocorrelation structure**, particularly when both positive and negative dependencies coexist. This makes sense since by $W^O$ inforce both aspect of the relationship to have an equal influence, when it can depending of the data not be the case. I see potential in learning adaptive weighting between the positive and negative attention components $A^{+}$ and $A^{-}$ instead of assigning them equal importance. This enhancement could improve performance in settings where negative interactions are weak or primarily noisy.
+
+If you would like to go further, you can read our paper, [Signed Dual Attention: Capturing Signed Dependencies in Time Series Forecasting](https://arxiv.org/abs/2606.04833), on arXiv. It presents the mathematical formulation and experiments behind SDA, exploring how attention can capture both positive and negative dependencies in time series without adding parameters.
 
 
 
